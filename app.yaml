@@ -1,0 +1,7 @@
+# Use the PHP 8.3 runtime
+runtime: php83
+
+# Defaults to "serve index.php" 
+entrypoint: serve helloworld.php
+
+# If your main page is index.php, comment the above entrypoint setting 
