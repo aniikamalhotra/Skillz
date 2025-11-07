@@ -152,28 +152,117 @@ function insertRequest($sender_id, $receiver_id)
     ]);
 }
 
-function getAllRequests()
+function getAllSportsArticles()
 {
     global $db;
-    $stmt = $db->query("SELECT * FROM requests");
+    $stmt = $db->prepare("SELECT * FROM Sports NATURAL JOIN Article");
+    $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function getRequestById($id)  
+function getAllSportsArticlesOrderedByAuthor()
 {
     global $db;
-    $stmt = $db->query("SELECT * FROM requests WHERE reqId=$id");
+    $stmt = $db->prepare("SELECT * FROM Sports NATURAL JOIN Article ORDER BY author ASC");
+    $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function getAllSportsArticlesOrderedByTitle()
+{
+    global $db;
+    $stmt = $db->prepare("SELECT * FROM Sports NATURAL JOIN Article ORDER BY title ASC");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
+function getSpecificSportsArticles($sportType)
+{
+    global $db;
+    $stmt = $db->prepare("SELECT * FROM Sports NATURAL JOIN Article WHERE Sports.sport_type = :sport_type");
+    $stmt->execute([':sport_type' => $sportType]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
+function getAllMusicArticles()
+{
+    global $db;
+    $stmt = $db->prepare("SELECT * FROM Music NATURAL JOIN Article");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
+function getAllMusicArticlesOrderedByAuthor()
+{
+    global $db;
+    $stmt = $db->prepare("SELECT * FROM Music NATURAL JOIN Article ORDER BY author ASC");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
+function getAllMusicArticlesOrderedByTitle()
+{
+    global $db;
+    $stmt = $db->prepare("SELECT * FROM Music NATURAL JOIN Article ORDER BY title ASC");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
+function getSpecificMusicArticles($musical_instrument)
+{
+    global $db;
+    $stmt = $db->prepare("SELECT * FROM Music NATURAL JOIN Article WHERE Music.musical_instrument = :musical_instrument");
+    $stmt->execute([':musical_instrument' => $musical_instrument]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
+function getAllArtArticles()
+{
+    global $db;
+    $stmt = $db->prepare("SELECT * FROM Art NATURAL JOIN Article");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
+function getAllArtArticlesOrderedByAuthor()
+{
+    global $db;
+    $stmt = $db->prepare("SELECT * FROM Art NATURAL JOIN Article ORDER BY author ASC");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
+function getAllArtArticlesOrderedByTitle()
+{
+    global $db;
+    $stmt = $db->prepare("SELECT * FROM Art NATURAL JOIN Article ORDER BY title ASC");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getSpecificArtArticles($media_type)
+{
+    global $db;
+    $stmt = $db->prepare("SELECT * FROM Art NATURAL JOIN Article WHERE Art.media_type = :media_type");
+    $stmt->execute([':media_type' => $media_type]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getSpecificReview($userId)
+{
+    global $db;
+    $stmt = $db->prepare("SELECT * FROM Review WHERE user_id = :user_id");
+    $stmt->execute([':user_id' => $userId]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getFavoritedArticles($userId)
+{
+    global $db;
+    $stmt = $db->prepare("SELECT * FROM Article JOIN Favorite ON Article.article_id = Favorite.article_id WHERE user_id = :user_id");
+    $stmt->execute([':user_id' => $userId]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
 function updateRequest($reqId, $reqDate, $roomNumber, $reqBy, $repairDesc, $reqPriority)
 {
