@@ -30,6 +30,107 @@ function updateRequest($reqId, $reqDate, $roomNumber, $reqBy, $repairDesc, $reqP
 }
 
 
+function updateUsername($newName, $userId)
+{
+    global $db;
+    $stmt = $db->prepare("UPDATE Users SET user_name = :user_name WHERE user_id = :user_id");
+    $stmt->execute([
+        ':user_name' => $newName,
+        ':user_id' => $userId
+    ]);
+}
+
+function updatePhone($newPhone, $userId)
+{
+    global $db;
+    $stmt = $db->prepare("UPDATE Users SET phone_number = :phone_number WHERE user_id = :user_id");
+    $stmt->execute([
+        ':phone_number' => $newPhone,
+        ':user_id' => $userId
+    ]);
+}
+
+function updateBio($newBio, $userId)
+{
+    global $db;
+    $stmt = $db->prepare("UPDATE Users SET bio = :bio WHERE user_id = :user_id");
+    $stmt->execute([
+        ':bio' => $newBio,
+        ':user_id' => $userId
+    ]);
+}
+
+function updateBio($newPassword, $userId)
+{
+    global $db;
+    $stmt = $db->prepare("UPDATE Users SET password = :passwords WHERE user_id = :user_id");
+    $stmt->execute([
+        ':passwords' => $newPassword,
+        ':user_id' => $userId
+    ]);
+}
+
+function upVote($userId, $articleId)
+{
+    global $db;
+    $stmt = $db->prepare("UPDATE Vote SET is_up = TRUE AND is_down = FALSE WHERE user_id = :user_id AND article_id = :article_id");
+    $stmt->execute([
+        ':user_id' => $userId,
+        ':article_id' => $articleId
+    ]);
+}
+
+function downVote($userId, $articleId)
+{
+    global $db;
+    $stmt = $db->prepare("UPDATE Vote SET is_up = FALSE AND is_down = TRUE WHERE user_id = :user_id AND article_id = :article_id");
+    $stmt->execute([
+        ':user_id' => $userId,
+        ':article_id' => $articleId
+    ]);
+}
+
+function cancelVote($userId, $articleId)
+{
+    global $db;
+    $stmt = $db->prepare("UPDATE Vote SET is_up = FALSE AND is_down = FALSE WHERE user_id = :user_id AND article_id = :article_id");
+    $stmt->execute([
+        ':user_id' => $userId,
+        ':article_id' => $articleId
+    ]);
+}
+
+function updateReviewText($userId, $articleId, $reviewText)
+{
+    global $db;
+    $stmt = $db->prepare("UPDATE Review SET review_text = :review_text WHERE user_id = :user_id AND article_id = :article_id");
+    $stmt->execute([
+        ':user_id' => $userId,
+        ':article_id' => $articleId,
+        ':review_text' => $reviewText
+    ]);
+}
+
+function updateArticleTitle($articleId, $title)
+{
+    global $db;
+    $stmt = $db->prepare("UPDATE Article SET title = :title WHERE article_id = :article_id");
+    $stmt->execute([
+        ':article_id' => $articleId,
+        ':title' => $title
+    ]);
+}
+
+function updateArticleAuthor($articleId, $author)
+{
+    global $db;
+    $stmt = $db->prepare("UPDATE Article SET author = :author WHERE article_id = :article_id");
+    $stmt->execute([
+        ':article_id' => $articleId,
+        ':author' => $author
+    ]);
+}
+
 function deleteUser($userId)
 {
     global $db;
