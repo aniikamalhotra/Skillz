@@ -2,11 +2,154 @@
 
 include 'connect-db.php';
 
-function addRequests($reqDate, $roomNumber, $reqBy, $repairDesc, $reqPriority)
+function insertUser($user_name, $email, $phone_number, $bio, $password)
 {
-    global $db;
-    $sql = "INSERT INTO requests (reqDate, roomNumber, reqBy, repairDesc, reqPriority) VALUES ('$reqDate', '$roomNumber', '$reqBy', '$repairDesc', '$reqPriority')";
-    $db->query($sql);
+    global $db
+    $stmt = $db->prepare("
+        INSERT INTO Users (user_name, email, phone_number, bio)
+        VALUES (:user_name, :email, :phone_number, :bio)
+    ");
+
+    $stmt->execute([
+        ':user_name'    => $user_name,
+        ':email'        => $email,
+        ':phone_number' => $phone_number,
+        ':bio'          => $bio,
+        ':password'     => $password
+    ]);
+}
+
+function insertArticle($user_id, $article_id, $title, $link, $date, $author)
+{
+    global $db
+    $stmt = $db->prepare("
+        INSERT INTO Article (user_id, article_id, title, link, date, author)
+        VALUES (:user_id, :article_id, :title, :link, :date, :author)
+    ");
+
+    $stmt->execute([
+        ':user_id'    => $user_id,
+        ':article_id' => $article_id,
+        ':title'      => $title,
+        ':link'       => $link,
+        ':date'       => $date,
+        ':author'     => $author
+    ]);
+}
+
+function insertFavorite($user_id, $article_id)
+{
+    global $db
+    $stmt = $db->prepare("
+        INSERT INTO Favorite(user_id, article_id)
+        VALUES (:user_id, :article_id)
+    ");
+
+    $stmt->execute([
+        ':user_id'    => $user_id,
+        ':article_id' => $article_id
+    ]);
+}
+
+function insertReview($user_id, $article_id, $review_text)
+{
+    global $db
+    $stmt = $db->prepare("
+        INSERT INTO Review(user_id, article_id, review_text)
+        VALUES (:user_id, :article_id, :review_text)
+    ");
+
+    $stmt->execute([
+        ':user_id'    => $user_id,
+        ':article_id' => $article_id,
+        ':review_text'=> $review_text
+    ]);
+}
+
+function insertSportArticle($article_id, $sport_type)
+{
+    global $db
+    $stmt = $db->prepare("
+        INSERT INTO Sports(article_id, sport_type)
+        VALUES (:article_id, :sport_type)
+    ");
+
+    $stmt->execute([
+        ':article_id' => $article_id,
+        ':sport_type' => $sport_type
+    ]);
+}
+
+function insertArtArticle($article_id, $media_type)
+{
+    global $db
+    $stmt = $db->prepare("
+        INSERT INTO Art(article_id, media_type)
+        VALUES (:article_id, :media_type)
+    ");
+
+    $stmt->execute([
+        ':article_id' => $article_id,
+        ':media_type' => $media_type
+    ]);
+}
+
+function insertMusicArticle($article_id, $musical_instrument)
+{
+    global $db
+    $stmt = $db->prepare("
+        INSERT INTO Music(article_id, musical_instrument)
+        VALUES (:article_id, :musical_instrument)
+    ");
+
+    $stmt->execute([
+        ':article_id' => $article_id,
+        ':musical_instrument' => $musical_instrument
+    ]);
+}
+
+function insertVote($user_id, $article_id, $is_up, $is_down)
+{
+    global $db
+    $stmt = $db->prepare("
+        INSERT INTO Vote(user_id, article_id, is_up, is_down)
+        VALUES (:user_id, :article_id, :is_up, :is_down)
+    ");
+
+    $stmt->execute([
+        ':user_id' => $user_id,
+        ':article_id' => $article_id,
+        ':is_up' => $is_up,
+        ':is_down' => $is_down
+    ]);
+}
+
+function insertFriend($user_1_id, $user_2_id)
+{
+    global $db
+    $stmt = $db->prepare("
+        INSERT INTO Friend(user_1_id, user_2_id)
+        VALUES (:user_1_id, :user_2_id)
+    ");
+
+    $stmt->execute([
+        ':user_1_id' => $user_1_id,
+        ':user_2_id' => $user_2_id
+    ]);
+}
+
+function insertRequest($sender_id, $receiver_id)
+{
+    global $db
+    $stmt = $db->prepare("
+        INSERT INTO Request (sender_id, receiver_id)
+        VALUES (:sender_id, :receiver_id)
+    ");
+
+    $stmt->execute([
+        ':sender_id' => $sender_id,
+        ':receiver_id' => $receiver_id
+    ]);
 }
 
 function getAllRequests()
@@ -22,6 +165,15 @@ function getRequestById($id)
     $stmt = $db->query("SELECT * FROM requests WHERE reqId=$id");
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+
+
+
+
+
+
+
+
 
 function updateRequest($reqId, $reqDate, $roomNumber, $reqBy, $repairDesc, $reqPriority)
 {
