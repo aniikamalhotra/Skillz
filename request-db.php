@@ -6,8 +6,8 @@ function insertUser($user_name, $email, $phone_number, $bio, $password)
 {
     global $db;
     $stmt = $db->prepare("
-        INSERT INTO Users (user_name, email, phone_number, bio)
-        VALUES (:user_name, :email, :phone_number, :bio)
+        INSERT INTO Users (user_name, email, phone_number, bio, password)
+        VALUES (:user_name, :email, :phone_number, :bio, :password)
     ");
 
     $stmt->execute([
@@ -264,13 +264,6 @@ function getFavoritedArticles($userId)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function updateRequest($reqId, $reqDate, $roomNumber, $reqBy, $repairDesc, $reqPriority)
-{
-    global $db;
-    $stmt = $db->query("UPDATE requests SET reqDate=$reqDate, roomNumber=$roomNumber, reqBy=$reqBy, repairDesc=$repairDesc, reqPriority=$reqPriority WHERE reqId=$reqId");
-}
-
-
 function updateUsername($newName, $userId)
 {
     global $db;
@@ -301,7 +294,7 @@ function updateBio($newBio, $userId)
     ]);
 }
 
-function updateBio($newPassword, $userId)
+function updatePassword($newPassword, $userId)
 {
     global $db;
     $stmt = $db->prepare("UPDATE Users SET password = :passwords WHERE user_id = :user_id");
@@ -314,7 +307,7 @@ function updateBio($newPassword, $userId)
 function upVote($userId, $articleId)
 {
     global $db;
-    $stmt = $db->prepare("UPDATE Vote SET is_up = TRUE AND is_down = FALSE WHERE user_id = :user_id AND article_id = :article_id");
+    $stmt = $db->prepare("UPDATE Vote SET is_up = TRUE, is_down = FALSE WHERE user_id = :user_id AND article_id = :article_id");
     $stmt->execute([
         ':user_id' => $userId,
         ':article_id' => $articleId
@@ -324,7 +317,7 @@ function upVote($userId, $articleId)
 function downVote($userId, $articleId)
 {
     global $db;
-    $stmt = $db->prepare("UPDATE Vote SET is_up = FALSE AND is_down = TRUE WHERE user_id = :user_id AND article_id = :article_id");
+    $stmt = $db->prepare("UPDATE Vote SET is_up = FALSE, is_down = TRUE WHERE user_id = :user_id AND article_id = :article_id");
     $stmt->execute([
         ':user_id' => $userId,
         ':article_id' => $articleId
@@ -334,7 +327,7 @@ function downVote($userId, $articleId)
 function cancelVote($userId, $articleId)
 {
     global $db;
-    $stmt = $db->prepare("UPDATE Vote SET is_up = FALSE AND is_down = FALSE WHERE user_id = :user_id AND article_id = :article_id");
+    $stmt = $db->prepare("UPDATE Vote SET is_up = FALSE, is_down = FALSE WHERE user_id = :user_id AND article_id = :article_id");
     $stmt->execute([
         ':user_id' => $userId,
         ':article_id' => $articleId
