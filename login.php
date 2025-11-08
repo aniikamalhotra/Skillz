@@ -20,10 +20,10 @@
     </div>  
   </div>
   
-  <?php
+  <!-- <?php
       include('connect-db.php');
       include('request-db.php');
-  ?>
+  ?> -->
 
 <body>
   <form action="simpleform.php" method="post">
