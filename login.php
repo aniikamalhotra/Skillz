@@ -40,9 +40,6 @@
     $str = "You've entered ". $_POST['yourname'];
     echo $str;  
     ?> -->
-
-</body>
-
 </div>
 
 
