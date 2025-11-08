@@ -4,7 +4,7 @@ include 'connect-db.php';
 
 function insertUser($user_name, $email, $phone_number, $bio, $password)
 {
-    global $db
+    global $db;
     $stmt = $db->prepare("
         INSERT INTO Users (user_name, email, phone_number, bio)
         VALUES (:user_name, :email, :phone_number, :bio)
@@ -21,7 +21,7 @@ function insertUser($user_name, $email, $phone_number, $bio, $password)
 
 function insertArticle($user_id, $article_id, $title, $link, $date, $author)
 {
-    global $db
+    global $db;
     $stmt = $db->prepare("
         INSERT INTO Article (user_id, article_id, title, link, date, author)
         VALUES (:user_id, :article_id, :title, :link, :date, :author)
@@ -39,7 +39,7 @@ function insertArticle($user_id, $article_id, $title, $link, $date, $author)
 
 function insertFavorite($user_id, $article_id)
 {
-    global $db
+    global $db;
     $stmt = $db->prepare("
         INSERT INTO Favorite(user_id, article_id)
         VALUES (:user_id, :article_id)
@@ -53,7 +53,7 @@ function insertFavorite($user_id, $article_id)
 
 function insertReview($user_id, $article_id, $review_text)
 {
-    global $db
+    global $db;
     $stmt = $db->prepare("
         INSERT INTO Review(user_id, article_id, review_text)
         VALUES (:user_id, :article_id, :review_text)
@@ -68,7 +68,7 @@ function insertReview($user_id, $article_id, $review_text)
 
 function insertSportArticle($article_id, $sport_type)
 {
-    global $db
+    global $db;
     $stmt = $db->prepare("
         INSERT INTO Sports(article_id, sport_type)
         VALUES (:article_id, :sport_type)
@@ -82,7 +82,7 @@ function insertSportArticle($article_id, $sport_type)
 
 function insertArtArticle($article_id, $media_type)
 {
-    global $db
+    global $db;
     $stmt = $db->prepare("
         INSERT INTO Art(article_id, media_type)
         VALUES (:article_id, :media_type)
@@ -96,7 +96,7 @@ function insertArtArticle($article_id, $media_type)
 
 function insertMusicArticle($article_id, $musical_instrument)
 {
-    global $db
+    global $db;
     $stmt = $db->prepare("
         INSERT INTO Music(article_id, musical_instrument)
         VALUES (:article_id, :musical_instrument)
@@ -110,7 +110,7 @@ function insertMusicArticle($article_id, $musical_instrument)
 
 function insertVote($user_id, $article_id, $is_up, $is_down)
 {
-    global $db
+    global $db;
     $stmt = $db->prepare("
         INSERT INTO Vote(user_id, article_id, is_up, is_down)
         VALUES (:user_id, :article_id, :is_up, :is_down)
@@ -126,7 +126,7 @@ function insertVote($user_id, $article_id, $is_up, $is_down)
 
 function insertFriend($user_1_id, $user_2_id)
 {
-    global $db
+    global $db;
     $stmt = $db->prepare("
         INSERT INTO Friend(user_1_id, user_2_id)
         VALUES (:user_1_id, :user_2_id)
@@ -140,7 +140,7 @@ function insertFriend($user_1_id, $user_2_id)
 
 function insertRequest($sender_id, $receiver_id)
 {
-    global $db
+    global $db;
     $stmt = $db->prepare("
         INSERT INTO Request (sender_id, receiver_id)
         VALUES (:sender_id, :receiver_id)
