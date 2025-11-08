@@ -1,7 +1,7 @@
 # Use the PHP 8.3 runtime
 runtime: php83
 
-# Defaults to "serve index.php" - index will be home page
+# Defaults to "serve login.php" - index will be home page
 entrypoint: serve login.php
 
 # If your main page is index.php, comment the above entrypoint setting 
