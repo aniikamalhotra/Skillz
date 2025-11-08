@@ -20,12 +20,11 @@
     </div>  
   </div>
   
-  <!-- <?php
+  <?php
       include('connect-db.php');
       include('request-db.php');
-  ?> -->
+  ?>
 
-<body>
   <form action="simpleform.php" method="post">
     <!-- <input type="text" name="yourname" /> <br/> -->
     Email
