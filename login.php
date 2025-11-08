@@ -25,23 +25,24 @@
       include('request-db.php');
   ?>
 
-  <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
-    <div class='mb-3'>
-        Email
-        <input type='text' class='form-control' 
-                id='requestedDate' name='requestedDate' 
-                placeholder='Email...' 
-                value="" />
-    </div>
-    <div class='mb-3'>
-        Password
-        <input type="password" id="password" name="password" placeholder='Password...' required>
-    </div>
-
-    <input type="submit" value="Submit" id="submitBtn" name="submitBtn" class="btn btn-dark"/>                  
-     
-    </div>  
+<body>
+  <form action="simpleform.php" method="post">
+    <!-- <input type="text" name="yourname" /> <br/> -->
+    Email
+    <input type='text' class='form-control' id='requestedDate' name='requestedDate' placeholder='Email...'/>
+    Password
+    <input type="password" id="password" name="password" placeholder='Password...' required>
+    <input type="submit" value="Submit" />
   </form>
+  
+    <!-- <?php
+    $str = "Hello world"; 
+    if (isset($_POST['yourname']))
+    $str = "You've entered ". $_POST['yourname'];
+    echo $str;  
+    ?> -->
+
+</body>
 
 </div>
 
