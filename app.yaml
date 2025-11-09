@@ -1,19 +1,17 @@
-# Use the PHP 8.3 runtime
 runtime: php83
 
-# Default entry point — serve login.php as your homepage
 entrypoint: serve login.php
 
 handlers:
-  # Handle all PHP files (so signup.php, topicselection.php, etc. work)
-  - url: /(.+\.php)$
-    script: auto
+  # Route all PHP files
+  - url: /(.*\.php)
+    script: \1
 
-  # Serve static assets (CSS, JS, images, etc.)
-  - url: /(.+\.(gif|png|jpg|jpeg|css|js|ico|woff|woff2|ttf|svg))$
+  # Serve static assets (CSS, JS, images)
+  - url: /(.+\.(gif|png|jpg|css|js|ico))
     static_files: \1
-    upload: .+\.(gif|png|jpg|jpeg|css|js|ico|woff|woff2|ttf|svg)$
+    upload: .+\.(gif|png|jpg|css|js|ico)
 
-  # Default route — if no specific file is given, use login.php
-  - url: /
+  # Default route (send all other traffic to login.php)
+  - url: /.*
     script: login.php
