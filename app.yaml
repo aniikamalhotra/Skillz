@@ -1,6 +1,6 @@
 runtime: php83
 
-entrypoint: serve login.php
+entrypoint: serve sportsarticleslist.php
 
 handlers:
   # Route all PHP files
