@@ -25,7 +25,7 @@
       include('request-db.php');
   ?>
 
-    <form action="topicselection.php" method="post">
+    <form action="/topicselection.php" method="post">
     <label for="email">Email</label><br>
     <input type="email" class="form-control" id="email" name="email" placeholder="Email..." required>
     <br><br>
@@ -38,7 +38,7 @@
 
     <div class="text-center mt-3">
         Don’t have an account?
-        <a href="signup.php">Create one</a>
+        <a href="/signup.php">Create one</a>
     </div>
 
     </form>
