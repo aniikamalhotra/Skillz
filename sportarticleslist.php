@@ -7,7 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Maintenance request form, a small/toy web app for ISP homework assignment, used by CS 3250 (Software Testing)">
   <meta name="keywords" content="CS 3250, Upsorn, Praphamontripong, Software Testing">
-  
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU7B0prg3rZh94WR7pSvU6dZVrZ7Qm8Qbsw3" crossorigin="anonymous">
   <title>Maintenance Services</title>
  
 </head>
