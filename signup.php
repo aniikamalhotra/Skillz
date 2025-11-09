@@ -16,7 +16,7 @@
 <div class="container">
   <div class="row g-3 mt-2">
     <div class="col">
-      <h1>Hi, welcome to Skillz!</h1>
+      <h1>Create an Account</h1>
     </div>  
   </div>
   
@@ -26,6 +26,15 @@
   ?>
 
     <form action="topicselection.php" method="post">
+    
+    <label for="first_name">First Name</label><br>
+    <input type="first_name" class="form-control" id="first_name" name="first_name" placeholder="First name..." required>
+    <br><br>
+
+    <label for="last_name">Last Name</label><br>
+    <input type="last_name" class="form-control" id="last_name" name="last_name" placeholder="Last name..." required>
+    <br><br>
+
     <label for="email">Email</label><br>
     <input type="email" class="form-control" id="email" name="email" placeholder="Email..." required>
     <br><br>
@@ -34,12 +43,7 @@
     <input type="password" id="password" name="password" placeholder="Password..." required>
     <br><br>
 
-    <input type="submit" value="Submit"><br>
-
-    <div class="text-center mt-3">
-        Don’t have an account?
-        <a href="signup.php">Create one</a>
-    </div>
+    <input type="submit" value="Sign Up"><br>
 
     </form>
   
