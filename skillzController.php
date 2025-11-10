@@ -22,7 +22,8 @@ class skillzController {
             $stmt->execute([':email' => $email]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($user && $user['password'] === $password) {
+
+            if ($user && password_verify($password, $user["password"])) {
                 $_SESSION['user_id'] = $user['user_id'];
                 $_SESSION['user_name'] = $user['user_name'];
                 header("Location: /?page=topicselection");
