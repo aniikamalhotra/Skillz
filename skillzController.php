@@ -49,7 +49,7 @@ class skillzController {
         include 'views/topicselection.php';
     }
 
-    public function sportsArticlesList() {
-        include 'views/sportsarticleslist.php';
+    public function sportArticlesList() {
+        include 'views/sportarticleslist.php';
     }
 }

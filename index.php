@@ -30,8 +30,8 @@ switch ($page) {
         }
         $controller->topicSelection();
         break;
-    case 'sportsarticleslist':
-        $controller->sportsarticleslist();
+    case 'sportarticleslist':
+        $controller->sportarticleslist();
     default:
         $controller->home();
         break;
