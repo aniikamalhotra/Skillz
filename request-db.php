@@ -157,7 +157,7 @@ function getAllSportsArticles($search_query)
     global $db;
     $stmt = $db->prepare("SELECT * FROM Sports NATURAL JOIN Article WHERE title LIKE :search OR author LIKE :search");
     $stmt->execute([
-        $stmt->execute([':search' => '%' . $search_query . '%']);
+        $stmt->execute([':search' => '%' . $search_query . '%'])
     ]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
