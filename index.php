@@ -37,7 +37,7 @@ switch ($page) {
         $controller->artArticlesList();
         break;
     default:
-        $controller->home();
+        $controller->login();
         break;
 }
 
