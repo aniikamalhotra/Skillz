@@ -19,8 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'] ?? '';
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
+    $bio = $_POST['bio'] ?? '';
+    $phone = $_POST['phone'] ?? '';
 
-    insertUser($name, $email, '', '', $password); 
+    insertUser($name, $email, $phone, $bio, $password); 
     header("Location: index.php");
     exit;
 }
@@ -37,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     Phone: <br>
     <input type="text" name="phone" required><br><br>
     Bio: <br>
-    <textarea name="bio" required></textarea><br><br>
+    <textarea name="bio"></textarea><br><br>
     Password:<br>
     <input type="password" name="password" required><br><br>
     <input type="submit" value="Sign Up">
