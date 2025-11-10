@@ -55,7 +55,7 @@ try
 {
 //  $db = new PDO("mysql:host=$hostname;dbname=db-demo", $username, $password);
    $db = new PDO($dsn, $username, $password);
-   echo "<p>An error did not occur while connecting to the database</p>";
+   // echo "<p>An error did not occur while connecting to the database</p>";
    // dispaly a message to let us know that we are connected to the database 
    // echo "<p>You are connected to the database -- host=$host</p>";
 }

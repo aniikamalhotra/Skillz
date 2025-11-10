@@ -1,17 +1,6 @@
-runtime: php83
-
-entrypoint: serve sportarticleslist.php
+runtime: php81
+entrypoint: serve index.php
 
 handlers:
-  # Route all PHP files
-  - url: /(.*\.php)
-    script: \1
-
-  # Serve static assets (CSS, JS, images)
-  - url: /(.+\.(gif|png|jpg|css|js|ico))
-    static_files: \1
-    upload: .+\.(gif|png|jpg|css|js|ico)
-
-  # Default route (send all other traffic to login.php)
   - url: /.*
-    script: login.php
+    script: auto

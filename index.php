@@ -1,25 +1,36 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>PHP example</title>
-</head>
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+session_start();
+?>
 
-<body>
-  <form action="simpleform.php" method="post">
-    <!-- <input type="text" name="yourname" /> <br/> -->
-    Email
-    <input type='text' class='form-control' id='requestedDate' name='requestedDate' placeholder='Email...'/>
-    Password
-    <input type="password" id="password" name="password" placeholder='Password...' required>
-    <input type="submit" value="Submit" />
-  </form>
-  
-<!-- <?php
-$str = "Hello world"; 
-if (isset($_POST['yourname']))
-   $str = "You've entered ". $_POST['yourname'];
-echo $str;  
-?> -->
+<?php
+session_start();
+include_once('connect-db.php');
+include_once('request-db.php');
+include_once('skillzController.php');
 
-</body>
-</html>   
+$controller = new skillzController();
+
+$page = $_GET['page'] ?? 'home';
+
+switch ($page) {
+    case 'login':
+        $controller->login();
+        break;
+    case 'signup':
+        $controller->signup();
+        break;
+    case 'topicselection':
+        // only accessible if logged in
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /?page=login");
+            exit;
+        }
+        $controller->topicSelection();
+        break;
+    default:
+        $controller->home();
+        break;
+}
