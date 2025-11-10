@@ -48,4 +48,8 @@ class skillzController {
     public function topicSelection() {
         include 'views/topicselection.php';
     }
+
+    public function sportsArticlesList() {
+        include 'views/sportsarticleslist.php';
+    }
 }
