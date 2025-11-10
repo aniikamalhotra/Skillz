@@ -70,9 +70,9 @@ class skillzController {
 
     public function sportArticlesList() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            header("Location: /?page=sportarticleslist");
-            exit;
+            $search_query = $_POST['query'] ?? '';
         }
+        $articles = getAllSportsArticles($search_query);
         include 'views/sportarticleslist.php';
     }
 
