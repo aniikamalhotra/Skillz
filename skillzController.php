@@ -37,11 +37,11 @@ class skillzController {
 
     public function signup() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $name = $_POST['name'] ?? '';
-            $email = $_POST['email'] ?? '';
-            $password = $_POST['password'] ?? '';
-            $phone = $_POST['phone'] ?? '';
-            $bio = $_POST['bio'] ?? '';
+            $name = $_POST['name'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $phone = $_POST['phone'];
+            $bio = $_POST['bio'];
 
             insertUser($name, $email, $phone, $bio, $password);
 

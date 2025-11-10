@@ -5,6 +5,19 @@ include 'connect-db.php';
 function insertUser($user_name, $email, $phone_number, $bio, $password)
 {
     global $db;
+
+    // check if email is already registered
+    $query = "SELECT * FROM Users WHERE email=$1";
+    $existingUser = $db->query($query, $email);
+
+    // need this for later to give user information about already registered emails
+    if ($existingUser) {
+      $_SESSION["feedback"] = "Email already registered!";
+      return;
+    }
+
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
     $stmt = $db->prepare("
         INSERT INTO Users (user_name, email, phone_number, bio, password)
         VALUES (:user_name, :email, :phone_number, :bio, :password)
@@ -15,7 +28,7 @@ function insertUser($user_name, $email, $phone_number, $bio, $password)
         ':email'        => $email,
         ':phone_number' => $phone_number,
         ':bio'          => $bio,
-        ':password'     => $password
+        ':password'     => $hashedPassword
     ]);
 }
 
