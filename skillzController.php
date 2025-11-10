@@ -7,6 +7,7 @@ class skillzController {
     }
 
     public function login() {
+        
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             global $db;
             $email = $_POST['email'] ?? '';
