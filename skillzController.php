@@ -69,6 +69,7 @@ class skillzController {
     }
 
     public function sportArticlesList() {
+        $search_query = ""
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $search_query = $_POST['query'] ?? '';
         }
