@@ -31,6 +31,7 @@ switch ($page) {
         break;
     case 'sportarticleslist':
         $controller->sportarticleslist();
+        break;
     default:
         $controller->home();
         break;
