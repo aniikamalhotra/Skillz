@@ -27,7 +27,6 @@
 
 <div class="row g-3">
   <?php
-    $articles = getAllMusicArticles();
     foreach ($articles as $article) :
   ?>
       <div class="col-sm-6">

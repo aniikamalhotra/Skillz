@@ -186,11 +186,13 @@ function getSpecificSportsArticles($sportType)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function getAllMusicArticles()
+function getAllMusicArticles($search_query)
 {
     global $db;
-    $stmt = $db->prepare("SELECT * FROM Music NATURAL JOIN Article");
-    $stmt->execute();
+    $stmt = $db->prepare("SELECT * FROM Music NATURAL JOIN Article WHERE title LIKE :search OR author LIKE :search");
+    $stmt->execute([
+        ':search' => '%' . $search_query . '%'
+    ]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
@@ -218,11 +220,13 @@ function getSpecificMusicArticles($musical_instrument)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function getAllArtArticles()
+function getAllArtArticles($search_query)
 {
     global $db;
-    $stmt = $db->prepare("SELECT * FROM Art NATURAL JOIN Article");
-    $stmt->execute();
+    $stmt = $db->prepare("SELECT * FROM Art NATURAL JOIN Article WHERE title LIKE :search OR author LIKE :search");
+    $stmt->execute([
+        ':search' => '%' . $search_query . '%'
+    ]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 

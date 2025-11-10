@@ -78,10 +78,20 @@ class skillzController {
     }
 
     public function musicArticlesList() {
+        $search_query = "";
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $search_query = $_POST['query'] ?? '';
+        }
+        $articles = getAllMusicArticles($search_query);
         include 'views/musicarticleslist.php';
     }
 
     public function artArticlesList() {
+        $search_query = "";
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $search_query = $_POST['query'] ?? '';
+        }
+        $articles = getAllArtArticles($search_query);
         include 'views/artarticleslist.php';
     }
 }
