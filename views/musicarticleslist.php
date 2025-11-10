@@ -25,35 +25,26 @@
       </div>
     </form>
 
-    <div class="row g-3">
+<div class="row g-3">
+  <?php
+    $articles = getAllMusicArticles();
+    foreach ($articles as $article) :
+  ?>
       <div class="col-sm-6">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <h5 class="card-title"><?= htmlspecialchars($article['title']) ?></h5>
+            <p class="card-text"><em>Author: <?= htmlspecialchars($article['author']) ?></em></p>
+            <p class="card-text"><em>Date Published: <?= htmlspecialchars($article['date_article']) ?></em></p>
+            <p class="card-text"><a href="<?= htmlspecialchars($article['link']) ?>" target="_blank">Go to Article</a></p>
+            <a href="#" class="btn btn-primary">View Reviews</a>
           </div>
         </div>
       </div>
-      <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-        <div class="col-sm-6">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Special title treatment</h5>
-            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
-      </div>
-    </div>
+  <?php
+    endforeach;
+  ?>
+</div>
   </div>
   
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>

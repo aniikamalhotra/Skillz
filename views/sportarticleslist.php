@@ -34,8 +34,8 @@
         <div class="card">
           <div class="card-body">
             <h5 class="card-title"><?= htmlspecialchars($article['title']) ?></h5>
-            <p class="card-text"><?= htmlspecialchars($article['author']) ?></p>
-            <p class="card-text"><?= htmlspecialchars($article['date_article']) ?></p>
+            <p class="card-text"><em>Author: <?= htmlspecialchars($article['author']) ?></em></p>
+            <p class="card-text"><em>Date Published: <?= htmlspecialchars($article['date_article']) ?></em></p>
             <p class="card-text"><a href="<?= htmlspecialchars($article['link']) ?>" target="_blank">Go to Article</a></p>
             <a href="#" class="btn btn-primary">View Reviews</a>
           </div>
