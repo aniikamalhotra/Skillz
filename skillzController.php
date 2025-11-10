@@ -52,4 +52,35 @@ class skillzController {
     public function sportArticlesList() {
         include 'views/sportarticleslist.php';
     }
+
+    public function addArticle() {
+
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /?page=login");
+            exit;
+        }
+
+        $errors = [];
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $title = trim($_POST['title'] ?? '');
+            $author = trim($_POST['author'] ?? '');
+            $date = $_POST['date_article'] ?? null;
+            $link = trim($_POST['link'] ?? '');
+
+            if ($title === '') {
+                $errors[] = "Title is required.";
+            }
+            if ($link !== '' && !filter_var($link, FILTER_VALIDATE_URL)) {
+                $errors[] = "URL is invalid.";
+            }
+
+            if (empty($errors)) {
+                insertArticle($_SESSION['user_id'], $title, $link ?: null, $date ?: null, $author ?: null);
+                header("Location: /?page=addarticle&success=1");
+                exit;
+            }
+        }
+
+        include 'views/addarticle.php';
+    }
 }

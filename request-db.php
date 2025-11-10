@@ -19,20 +19,19 @@ function insertUser($user_name, $email, $phone_number, $bio, $password)
     ]);
 }
 
-function insertArticle($user_id, $article_id, $title, $link, $date, $author)
+function insertArticle($user_id, $title, $link, $date_article, $author)
 {
     global $db;
     $stmt = $db->prepare("
-        INSERT INTO Article (user_id, article_id, title, link, date, author)
-        VALUES (:user_id, :article_id, :title, :link, :date, :author)
+        INSERT INTO Article (user_id, title, link, date_article, author)
+        VALUES (:user_id, :title, :link, :date_article, :author)
     ");
 
     $stmt->execute([
         ':user_id'    => $user_id,
-        ':article_id' => $article_id,
         ':title'      => $title,
         ':link'       => $link,
-        ':date'       => $date,
+        ':date_article' => $date_article,
         ':author'     => $author
     ]);
 }
