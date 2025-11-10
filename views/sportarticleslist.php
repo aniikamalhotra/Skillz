@@ -36,7 +36,7 @@
             <h5 class="card-title"><?= htmlspecialchars($article['title']) ?></h5>
             <p class="card-text"><?= htmlspecialchars($article['author']) ?></p>
             <p class="card-text"><?= htmlspecialchars($article['date_article']) ?></p>
-            <p class="card-text"><a href="<?= htmlspecialchars($article['link']) ?>" target="_blank"><?= htmlspecialchars($article['link']) ?></a></p>
+            <p class="card-text"><a href="<?= htmlspecialchars($article['link']) ?>" target="_blank">Go to Article</a></p>
             <a href="#" class="btn btn-primary">View Reviews</a>
           </div>
         </div>
