@@ -18,7 +18,7 @@
       </div>  
     </div>
 
-    <form action="search.php" method="GET" class="mb-4">
+    <form method="POST" class="mb-4">
       <div class="input-group">
         <input type="text" name="query" class="form-control" placeholder="Search...">
         <button class="btn btn-primary" type="submit">Search</button>
