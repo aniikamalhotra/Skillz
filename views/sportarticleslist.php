@@ -18,7 +18,7 @@
       </div>  
     </div>
 
-    <form action="search.php" method="GET" class="mb-4">
+    <form action="sportarticleslist.php" method="POST" class="mb-4">
       <div class="input-group">
         <input type="text" name="query" class="form-control" placeholder="Search...">
         <button class="btn btn-primary" type="submit">Search</button>
@@ -27,7 +27,7 @@
 
 <div class="row g-3">
   <?php
-    $articles = getAllSportsArticles();
+    $articles = getAllSportsArticles(isset($_POST['query'] ?? ''));
     foreach ($articles as $article) :
   ?>
       <div class="col-sm-6">

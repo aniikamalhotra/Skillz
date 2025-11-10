@@ -152,11 +152,13 @@ function insertRequest($sender_id, $receiver_id)
     ]);
 }
 
-function getAllSportsArticles()
+function getAllSportsArticles($search_query)
 {
     global $db;
-    $stmt = $db->prepare("SELECT * FROM Sports NATURAL JOIN Article");
-    $stmt->execute();
+    $stmt = $db->prepare("SELECT * FROM Sports NATURAL JOIN Article WHERE title LIKE :search OR author LIKE :search");
+    $stmt->execute([
+        $stmt->execute([':search' => '%' . $search_query . '%']);
+    ]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
