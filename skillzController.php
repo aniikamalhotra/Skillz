@@ -71,4 +71,12 @@ class skillzController {
     public function sportArticlesList() {
         include 'views/sportarticleslist.php';
     }
+
+    public function musicArticlesList() {
+        include 'views/musicarticleslist.php';
+    }
+
+    public function artArticlesList() {
+        include 'views/artarticleslist.php';
+    }
 }
