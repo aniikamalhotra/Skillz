@@ -21,5 +21,10 @@ $name = $loggedIn ? $_SESSION['name'] : '';
 <html>
 <body>
     <h1>Hi, <?php echo $name ?>! What do you want to read today?</h1>
+    <form method="post">
+        <input type="submit" name="music" value="Music">
+        <input type="submit" name= "art" value="Art">
+        <input type="submit" name="sports" value="Sports">
+    </form>
 </body>
 </html>

@@ -46,6 +46,19 @@ class skillzController {
     }
 
     public function topicSelection() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if isset($_POST['music']) {
+                header("Location: /?page=musicarticleslist")
+                exit;
+            } elseif isset($_POST['art']) {
+                header("Location: /?page=artarticleslist")
+                exit;
+            } elseif isset($_POST['sports']) {
+                header("Location: /?page=sportarticleslist")
+                exit;
+            }
+        }
+
         include 'views/topicselection.php';
     }
 
