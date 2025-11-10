@@ -1,6 +1,11 @@
 <?php
 
 class skillzController {
+    private $db;
+
+    public function __construct($db) {
+        $this->db = $db;
+    }
 
     public function home() {
         include 'views/login.php';

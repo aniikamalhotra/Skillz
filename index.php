@@ -8,7 +8,7 @@ include_once('connect-db.php');
 include_once('request-db.php');
 include_once('skillzController.php');
 
-$controller = new skillzController();
+$controller = new skillzController($db);
 
 $page = $_GET['page'] ?? 'home';
 
