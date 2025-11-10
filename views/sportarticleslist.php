@@ -27,7 +27,7 @@
 
 <div class="row g-3">
   <?php
-    $articles = getAllSportsArticles(isset($_POST['query'] ?? ''));
+    $articles = getAllSportsArticles($_POST['query'] ?? '');
     foreach ($articles as $article) :
   ?>
       <div class="col-sm-6">
