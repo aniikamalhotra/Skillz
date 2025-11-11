@@ -32,8 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <form method="post">
     Name:<br>
     <input type="text" name="name" required><br><br>
-    Username:<br>
-    <input type="text" name="username" required><br><br>
     Email:<br>
     <input type="email" name="email" required><br><br>
     Phone: <br>
