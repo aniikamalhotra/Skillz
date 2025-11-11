@@ -75,7 +75,9 @@
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
         <div class="login-card">
           <h2 class="fw-bold text-center mb-4 text-skillz">Welcome to Skillz!</h2>
-
+          <?php if (!empty($error)) : ?>
+          <div class="alert alert-danger text-center"><?php echo $error; ?></div>
+          <?php endif; ?>
           <form method="post">
             <div class="form-outline mb-4">
               <label class="form-label">Email address</label>
