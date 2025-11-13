@@ -164,6 +164,17 @@ function insertRequest($sender_id, $receiver_id)
     ]);
 }
 
+function getUser($user_id)
+{
+    global $db;
+    $stmt = $db->prepare("SELECT * FROM Users WHERE user_id = :user_id");
+    $stmt->execute([
+        ':user_id' => $user_id
+    ]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
 function getAllSportsArticles($search_query)
 {
     global $db;
@@ -317,7 +328,7 @@ function updatePassword($newPassword, $userId)
     global $db;
     $stmt = $db->prepare("UPDATE Users SET password = :passwords WHERE user_id = :user_id");
     $stmt->execute([
-        ':passwords' => $newPassword,
+        ':passwords' => $hashedPassword,
         ':user_id' => $userId
     ]);
 }

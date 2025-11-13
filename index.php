@@ -35,13 +35,32 @@ switch ($page) {
         $controller->topicSelection();
         break;
     case 'sportarticleslist':
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /?page=login");
+            exit;
+        }
         $controller->sportArticlesList();
         break;
     case 'musicarticleslist':
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /?page=login");
+            exit;
+        }
         $controller->musicArticlesList();
         break;
     case 'artarticleslist':
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /?page=login");
+            exit;
+        }
         $controller->artArticlesList();
+        break;
+    case 'updateprofilepage':
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /?page=login");
+            exit;
+        }
+        $controller->updateProfilePage();
         break;
     default:
         $controller->login();
