@@ -326,6 +326,7 @@ function updateBio($newBio, $userId)
 function updatePassword($newPassword, $userId)
 {
     global $db;
+    $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
     $stmt = $db->prepare("UPDATE Users SET password = :passwords WHERE user_id = :user_id");
     $stmt->execute([
         ':passwords' => $hashedPassword,
