@@ -36,7 +36,11 @@
             <p class="card-text"><em>Author: <?= htmlspecialchars($article['author']) ?></em></p>
             <p class="card-text"><em>Date Published: <?= htmlspecialchars($article['date_article']) ?></em></p>
             <p class="card-text"><a href="<?= htmlspecialchars($article['link']) ?>" target="_blank">Go to Article</a></p>
-            <a href="#" class="btn btn-primary">View Reviews</a>
+            <form method="post">
+              <input type="hidden" id="articleId" name="aticleId" value="<?php echo $article["article_id"] ?>">
+              <button type="submit" name="view-reviews" class="btn btn-skillz btn-lg px-5">View Review</button>
+              <button type="submit" name="add-review" class="btn btn-skillz btn-lg px-5">Add Review</button>
+            </form>
           </div>
         </div>
       </div>

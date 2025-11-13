@@ -71,7 +71,17 @@ class skillzController {
     public function sportArticlesList() {
         $search_query = "";
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $search_query = $_POST['query'] ?? '';
+            if (isset($_POST['view-reviews'])) {
+                header("Location: /?page=viewreviews");
+            } elseif (isset($_POST['sports-add-review'])) {
+                $article_id = $_POST['articleId'] ?? null;
+                if ($article_id) {
+                    header("Location: /?page=addreview&type=sports&article_id=" . urlencode($article_id));
+                    exit;
+                }
+            } else {
+                $search_query = $_POST['query'] ?? '';
+            }
         }
         $articles = getAllSportsArticles($search_query);
         include 'views/sportarticleslist.php';
@@ -80,7 +90,17 @@ class skillzController {
     public function musicArticlesList() {
         $search_query = "";
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $search_query = $_POST['query'] ?? '';
+            if (isset($_POST['view-reviews'])) {
+                header("Location: /?page=viewreviews");
+            } elseif (isset($_POST['add-review'])) {
+                $article_id = $_POST['articleId'] ?? null;
+                if ($article_id) {
+                    header("Location: /?page=addreview&type=music&article_id=" . urlencode($article_id));
+                    exit;
+                }
+            } else {
+                $search_query = $_POST['query'] ?? '';
+            }
         }
         $articles = getAllMusicArticles($search_query);
         include 'views/musicarticleslist.php';
@@ -89,7 +109,18 @@ class skillzController {
     public function artArticlesList() {
         $search_query = "";
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $search_query = $_POST['query'] ?? '';
+            if (isset($_POST['view-reviews'])) {
+                header("Location: /?page=viewreviews");
+            } elseif (isset($_POST['add-review'])) {
+                header("Location: /?page=addreview");
+            } else {
+                $article_id = $_POST['articleId'] ?? null;
+                if ($article_id) {
+                    header("Location: /?page=addreview&type=art&article_id=" . urlencode($article_id));
+                    exit;
+                }
+                $search_query = $_POST['query'] ?? '';
+            }
         }
         $articles = getAllArtArticles($search_query);
         include 'views/artarticleslist.php';
@@ -140,6 +171,30 @@ class skillzController {
             updatePassword($password, $_SESSION['user_id']);
         }
         include 'views/updateprofilepage.php';
+    }
+
+    public function addReview($article_id, $type) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $review = $_POST['review'] ?? '';
+
+            insertReview($_SESSION['user_id'], $article_id, $review );
+            if ($type == "sports") {
+                header("Location: /?page=sportarticleslist.php");
+            } elseif ($type == "music") {
+                header("Location: /?page=musicarticleslist.php");
+            } elseif ($type == "art") {
+                header("Location: /?page=artarticleslist.php");
+            } else {}
+            exit;
+        }
+        include 'views/addreview.php';
+    }
+
+    public function viewReviews() {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+        }
+        include 'views/viewreviews.php';
     }
 }
 

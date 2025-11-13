@@ -62,6 +62,22 @@ switch ($page) {
         }
         $controller->updateProfilePage();
         break;
+    case 'addreview':
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /?page=login");
+            exit;
+        }
+        $type = $_GET['type'];
+        $article_id = $_GET['article_id'];
+        $controller->addReview($article_id, $type);
+        break;
+    case 'viewreviews':
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /?page=login");
+            exit;
+        }
+        $controller->viewReviews();
+        break;
     default:
         $controller->login();
         break;
