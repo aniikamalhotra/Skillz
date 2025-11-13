@@ -58,22 +58,22 @@ include_once('request-db.php');
     <form method="post">
       <div class="form-outline mb-3">
         <label class="form-label" for="name">Name</label>
-        <input type="text" id="name" name="name" class="form-control form-control-lg" placeholder="<?php echo getUser($_SESSION['user_id']) ?>" required>
+        <input type="text" id="name" name="name" class="form-control form-control-lg" value="<?php echo getUser($_SESSION['user_id'])[0]["user_name"] ?>" required>
       </div>
 
       <div class="form-outline mb-3">
         <label class="form-label" for="phone">Phone</label>
-        <input type="text" id="phone" name="phone" class="form-control form-control-lg" placeholder="<?php echo getUser($_SESSION['user_id'])["phone_number"] ?>" required>
+        <input type="text" id="phone" name="phone" class="form-control form-control-lg" value="<?php echo getUser($_SESSION['user_id'])[0]["phone_number"] ?>" required>
       </div>
 
       <div class="form-outline mb-3">
         <label class="form-label" for="bio">Bio</label>
-        <textarea id="bio" name="bio" class="form-control form-control-lg" placeholder="<?php echo getUser($_SESSION['user_id'])["bio"] ?>" rows="2"></textarea>
+        <textarea id="bio" name="bio" class="form-control form-control-lg" value="<?php echo getUser($_SESSION['user_id'])[0]["bio"] ?>" rows="2"></textarea>
       </div>
 
       <div class="form-outline mb-4">
         <label class="form-label" for="password">Password</label>
-        <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="<?php echo getUser($_SESSION['user_id'])["password"] ?>" required>
+        <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Type your new password here..." required>
       </div>
 
       <div class="text-center mt-4">
