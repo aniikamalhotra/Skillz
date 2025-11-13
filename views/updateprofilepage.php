@@ -73,7 +73,7 @@ include_once('request-db.php');
 
       <div class="form-outline mb-4">
         <label class="form-label" for="password">Password</label>
-        <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Type your new password here..." required>
+        <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Type your new password here...">
       </div>
 
       <div class="text-center mt-4">
