@@ -58,7 +58,7 @@ include_once('request-db.php');
     <form method="post">
       <div class="form-outline mb-3">
         <label class="form-label" for="name">Name</label>
-        <input type="text" id="name" name="name" class="form-control form-control-lg" placeholder="<?php echo getUser($_SESSION['user_id'])["user_name"] ?>" required>
+        <input type="text" id="name" name="name" class="form-control form-control-lg" placeholder="<?php echo getUser($_SESSION['user_id']) ?>" required>
       </div>
 
       <div class="form-outline mb-3">
