@@ -129,18 +129,15 @@ class skillzController {
     public function updateProfilePage() {
         $search_query = "";
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $name = $_POST['name'] ?? '';
-                $password = $_POST['password'] ?? '';
-                $bio = $_POST['bio'] ?? '';
-                $phone = $_POST['phone'] ?? '';
+            $name = $_POST['name'] ?? '';
+            $password = $_POST['password'] ?? '';
+            $bio = $_POST['bio'] ?? '';
+            $phone = $_POST['phone'] ?? '';
 
-                updateUsername($name, $_SESSION['user_id']);
-                updatePhone($phone, $_SESSION['user_id']);
-                updateBio($bio, $_SESSION['user_id']);
-                updatePassword($password, $_SESSION['user_id']);
-                exit;
-            }
+            updateUsername($name, $_SESSION['user_id']);
+            updatePhone($phone, $_SESSION['user_id']);
+            updateBio($bio, $_SESSION['user_id']);
+            updatePassword($password, $_SESSION['user_id']);
         }
         include 'views/updateprofilepage.php';
     }
