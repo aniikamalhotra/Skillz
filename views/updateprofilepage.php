@@ -68,7 +68,7 @@ include_once('request-db.php');
 
       <div class="form-outline mb-3">
         <label class="form-label" for="bio">Bio</label>
-        <textarea id="bio" name="bio" class="form-control form-control-lg" value="<?php echo getUser($_SESSION['user_id'])[0]["bio"] ?>" rows="2"></textarea>
+        <textarea id="bio" name="bio" class="form-control form-control-lg" rows="2"><?php echo getUser($_SESSION['user_id'])[0]["bio"] ?></textarea>
       </div>
 
       <div class="form-outline mb-4">
