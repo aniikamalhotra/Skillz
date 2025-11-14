@@ -85,6 +85,8 @@ switch ($page) {
             header("Location: /?page=login");
             exit;
         }
+        $type = $_GET['type'];
+        $article_id = $_GET['article_id'];
         $controller->viewReviews();
         break;
     default:

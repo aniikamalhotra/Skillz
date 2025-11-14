@@ -79,6 +79,12 @@ class skillzController {
                     header("Location: /?page=addreview&type=sports&article_id=" . urlencode($article_id));
                     exit;
                 }
+            } elseif (isset($_POST['view-reviews'])) {
+                $article_id = $_POST['articleId'] ?? null;
+                if ($article_id) {
+                    header("Location: /?page=viewreviews&type=sports&article_id=" . urlencode($article_id));
+                    exit;
+                }
             } elseif (isset($_POST['edit-review'])) {
                 $article_id = $_POST['articleId'] ?? null;
                 if ($article_id) {
@@ -102,6 +108,12 @@ class skillzController {
                 $article_id = $_POST['articleId'] ?? null;
                 if ($article_id) {
                     header("Location: /?page=addreview&type=music&article_id=" . urlencode($article_id));
+                    exit;
+                }
+            } elseif (isset($_POST['view-reviews'])) {
+                $article_id = $_POST['articleId'] ?? null;
+                if ($article_id) {
+                    header("Location: /?page=viewreviews&type=music&article_id=" . urlencode($article_id));
                     exit;
                 }
             } elseif (isset($_POST['edit-review'])) {
@@ -129,6 +141,12 @@ class skillzController {
                 $article_id = $_POST['articleId'] ?? null;
                 if ($article_id) {
                     header("Location: /?page=editreview&type=art&article_id=" . urlencode($article_id));
+                    exit;
+                }
+            } elseif (isset($_POST['view-reviews'])) {
+                $article_id = $_POST['articleId'] ?? null;
+                if ($article_id) {
+                    header("Location: /?page=viewreviews&type=art&article_id=" . urlencode($article_id));
                     exit;
                 }
             } else {
@@ -230,10 +248,25 @@ class skillzController {
         include 'views/editreview.php';
     }
 
-    public function viewReviews() {
+    public function viewReviews($type, $article_id) {
+        $search_query = "";
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+            if (isset($_POST['done'])) {
+                if ($type == "sports") {
+                    header("Location: /?page=sportarticleslist");
+                } elseif ($type == "music") {
+                    header("Location: /?page=musicarticleslist");
+                } elseif ($type == "art") {
+                    header("Location: /?page=artarticleslist");
+                } else {}
+                exit;
+            }
+
+            $search_query = $_POST['query'] ?? '';
         }
+
+        $reviews = getArticleReviews($article_id, $search_query)
         include 'views/viewreviews.php';
     }
 }

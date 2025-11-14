@@ -293,6 +293,14 @@ function getSpecificArticleReview($userId, $articleId)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function getArticleReviews($articleId, $search_query)
+{
+    global $db;
+    $stmt = $db->prepare("SELECT * FROM Review NATURAL JOIN Users WHERE article_id = :article_id AND (user_name LIKE :search OR review_text LIKE :search)");
+    $stmt->execute([':article_id' => $articleId, ':search' => '%' . $search_query . '%']);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 function getFavoritedArticles($userId)
 {
     global $db;

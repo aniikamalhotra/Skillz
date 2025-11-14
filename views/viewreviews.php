@@ -7,7 +7,7 @@ include_once('request-db.php');
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Profile Page</title>
+  <title>View Reviews</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -51,37 +51,31 @@ include_once('request-db.php');
 <body>
 
 <section class="min-vh-100 d-flex justify-content-center align-items-center">
-  <div class="profile-card">
+    <h1 class="fw-bold text-center mb-4 text-skillz">View Reviews</h1>
 
-    <h2 class="fw-bold text-center mb-4 text-skillz">My Profile Page</h2>
-
-    <form method="post">
-      <div class="form-outline mb-3">
-        <label class="form-label" for="name">Name</label>
-        <input type="text" id="name" name="name" class="form-control form-control-lg" value="<?php echo getUser($_SESSION['user_id'])[0]["user_name"] ?>" required>
-      </div>
-
-      <div class="form-outline mb-3">
-        <label class="form-label" for="phone">Phone</label>
-        <input type="text" id="phone" name="phone" class="form-control form-control-lg" value="<?php echo getUser($_SESSION['user_id'])[0]["phone_number"] ?>" required>
-      </div>
-
-      <div class="form-outline mb-3">
-        <label class="form-label" for="bio">Bio</label>
-        <textarea id="bio" name="bio" class="form-control form-control-lg" rows="2"><?php echo getUser($_SESSION['user_id'])[0]["bio"] ?></textarea>
-      </div>
-
-      <div class="form-outline mb-4">
-        <label class="form-label" for="password">Password</label>
-        <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="Type your new password here...">
-      </div>
-
-      <div class="text-center mt-4">
-        <button type="submit" class="btn btn-skillz btn-lg px-5">Update Profile Information</button>
+    <form method="POST" class="mb-4">
+      <div class="input-group">
+        <input type="text" name="query" class="form-control" placeholder="Search...">
+        <button class="btn btn btn-skillz btn-lg px-5" type="submit">Search</button>
       </div>
     </form>
 
-  </div>
+    <?php 
+      foreach ($review as $reviews) {
+    ?>
+      <div class="card-body">
+        <h6 class="card-title"><em>Posted by <?= htmlspecialchars($review['user_name']) ?></em></h6>
+        <p class="card-text"><?= htmlspecialchars($review['review_text']) ?></p>
+      </div>
+    <?php        
+      }
+    ?>
+
+    <form method="post">
+      <div class="text-center mt-4">
+        <button type="submit" name="done" class="btn btn-skillz btn-lg px-5">Done</button>
+      </div>
+    </form>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
