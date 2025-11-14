@@ -73,7 +73,7 @@ class skillzController {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['view-reviews'])) {
                 header("Location: /?page=viewreviews");
-            } elseif (isset($_POST['sports-add-review'])) {
+            } elseif (isset($_POST['add-review'])) {
                 $article_id = $_POST['articleId'] ?? null;
                 if ($article_id) {
                     header("Location: /?page=addreview&type=sports&article_id=" . urlencode($article_id));
@@ -179,11 +179,11 @@ class skillzController {
 
             insertReview($_SESSION['user_id'], $article_id, $review );
             if ($type == "sports") {
-                header("Location: /?page=sportarticleslist.php");
+                header("Location: /?page=sportarticleslist");
             } elseif ($type == "music") {
-                header("Location: /?page=musicarticleslist.php");
+                header("Location: /?page=musicarticleslist");
             } elseif ($type == "art") {
-                header("Location: /?page=artarticleslist.php");
+                header("Location: /?page=artarticleslist");
             } else {}
             exit;
         }
