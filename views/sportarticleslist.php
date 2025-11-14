@@ -39,7 +39,11 @@
             <form method="post">
               <input type="hidden" id="articleId" name="articleId" value="<?php echo $article["article_id"] ?>">
               <button type="submit" name="view-reviews" class="btn btn-skillz btn-lg px-5">View Review</button>
-              <button type="submit" name="add-review" class="btn btn-skillz btn-lg px-5">Add Review</button>
+              <?php if (len(getSpecificArticleReview($_SESSION["user_id"], $article["article_id"])) == 0) { ?>
+                <button type="submit" name="add-review" class="btn btn-skillz btn-lg px-5">Add Review</button>              
+              <?php } else { ?>
+                <button type="submit" name="edit-review" class="btn btn-skillz btn-lg px-5">Edit Review</button>
+              <?php } ?>
             </form>
           </div>
         </div>

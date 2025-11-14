@@ -79,6 +79,12 @@ class skillzController {
                     header("Location: /?page=addreview&type=sports&article_id=" . urlencode($article_id));
                     exit;
                 }
+            } elseif (isset($_POST['edit-review'])) {
+                $article_id = $_POST['articleId'] ?? null;
+                if ($article_id) {
+                    header("Location: /?page=editreview&type=sports&article_id=" . urlencode($article_id));
+                    exit;
+                }
             } else {
                 $search_query = $_POST['query'] ?? '';
             }
@@ -98,6 +104,12 @@ class skillzController {
                     header("Location: /?page=addreview&type=music&article_id=" . urlencode($article_id));
                     exit;
                 }
+            } elseif (isset($_POST['edit-review'])) {
+                $article_id = $_POST['articleId'] ?? null;
+                if ($article_id) {
+                    header("Location: /?page=editreview&type=music&article_id=" . urlencode($article_id));
+                    exit;
+                }
             } else {
                 $search_query = $_POST['query'] ?? '';
             }
@@ -113,6 +125,12 @@ class skillzController {
                 header("Location: /?page=viewreviews");
             } elseif (isset($_POST['add-review'])) {
                 header("Location: /?page=addreview");
+            } elseif (isset($_POST['edit-review'])) {
+                $article_id = $_POST['articleId'] ?? null;
+                if ($article_id) {
+                    header("Location: /?page=editreview&type=art&article_id=" . urlencode($article_id));
+                    exit;
+                }
             } else {
                 $article_id = $_POST['articleId'] ?? null;
                 if ($article_id) {
@@ -188,6 +206,28 @@ class skillzController {
             exit;
         }
         include 'views/addreview.php';
+    }
+
+    public function editReview($article_id, $type) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $review = $_POST['review'] ?? '';
+
+            if (isset($_POST['update'])) {
+                updateReviewText($_SESSION['user_id'], $article_id, $review );
+            }
+            elseif (isset($_POST['done'])) {
+                if ($type == "sports") {
+                    header("Location: /?page=sportarticleslist");
+                } elseif ($type == "music") {
+                    header("Location: /?page=musicarticleslist");
+                } elseif ($type == "art") {
+                    header("Location: /?page=artarticleslist");
+                } else {}
+                exit;
+            }
+        }
+        $review_text = getSpecificArticleReview($_SESSION["user_id"], $article_id)["review_text"];
+        include 'views/editreview.php';
     }
 
     public function viewReviews() {

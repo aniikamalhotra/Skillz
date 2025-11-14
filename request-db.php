@@ -285,6 +285,14 @@ function getSpecificReview($userId)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function getSpecificArticleReview($userId, $articleId)
+{
+    global $db;
+    $stmt = $db->prepare("SELECT * FROM Review WHERE user_id = :user_id AND article_id = :article_id");
+    $stmt->execute([':user_id' => $userId, ':article_id' => $articleId]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 function getFavoritedArticles($userId)
 {
     global $db;
