@@ -266,7 +266,7 @@ class skillzController {
             $search_query = $_POST['query'] ?? '';
         }
 
-        $reviews = getArticleReviews($article_id, $search_query)
+        $reviews = getArticleReviews($article_id, $search_query);
         include 'views/viewreviews.php';
     }
 }
