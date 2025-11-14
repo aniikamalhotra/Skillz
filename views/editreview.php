@@ -57,7 +57,7 @@ include_once('request-db.php');
 
     <form method="post">
       <div class="form-outline mb-3">
-        <textarea id="review" name="review" class="form-control form-control-lg" rows="8"><?php $review_text ?></textarea>
+        <textarea id="review" name="review" class="form-control form-control-lg" rows="8"><?= htmlspecialchars($review_text) ?></textarea>
       </div>
 
       <div class="text-center mt-4">
