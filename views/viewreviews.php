@@ -53,8 +53,9 @@ include_once('request-db.php');
 <section class="min-vh-100 d-flex justify-content-center align-items-center">
     <h1 class="fw-bold text-center mb-4 text-skillz">View Reviews</h1>
 
+
     <form method="POST" class="mb-4">
-      <div class="input-group">
+      <div class="form-outline mb-3">
         <input type="text" name="query" class="form-control" placeholder="Search...">
         <button class="btn btn btn-skillz btn-lg px-5" type="submit">Search</button>
       </div>
@@ -63,9 +64,11 @@ include_once('request-db.php');
     <?php 
       foreach ($reviews as $review) {
     ?>
-      <div class="card-body">
-        <h6 class="card-title"><em>Posted by <?= htmlspecialchars($review['user_name']) ?></em></h6>
-        <p class="card-text"><?= htmlspecialchars($review['review_text']) ?></p>
+      <div class="mb-3 profile-card">
+        <div class="card-body">
+          <h6 class="card-title"><em>Posted by <?= htmlspecialchars($review['user_name']) ?></em></h6>
+          <p class="card-text"><?= htmlspecialchars($review['review_text']) ?></p>
+        </div>
       </div>
     <?php        
       }
