@@ -226,7 +226,7 @@ class skillzController {
                 exit;
             }
         }
-        $review_text = getSpecificArticleReview($_SESSION["user_id"], $article_id)["review_text"];
+        $review_text = getSpecificArticleReview($_SESSION["user_id"], $article_id)[0]["review_text"];
         include 'views/editreview.php';
     }
 
