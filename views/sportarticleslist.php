@@ -8,6 +8,24 @@
   <meta name="keywords" content="CS 3250, Upsorn, Praphamontripong, Software Testing">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <title>Maintenance Services</title>
+
+  <style>
+    body {
+      background-color: #fef8f4;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .btn-skillz {
+      background-color: #3c52e3;
+      color: #fef8f4;
+      border: none;
+      transition: 0.3s;
+    }
+
+    .btn-skillz:hover {
+      background-color: #2f45cf;
+    }
+  </style>
 </head>
 
 <body>  
