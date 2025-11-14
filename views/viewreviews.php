@@ -50,12 +50,12 @@ include_once('request-db.php');
 </head>
 <body>
 
-<section class="min-vh-100 d-flex justify-content-center align-items-center">
+<section class="min-vh-100 d-flex flex-column align-items-center">
     <h1 class="fw-bold text-center mb-4 text-skillz">View Reviews</h1>
 
 
     <form method="POST" class="mb-4">
-      <div class="form-outline mb-3">
+      <div class="form-outline mb-3 input-group">
         <input type="text" name="query" class="form-control" placeholder="Search...">
         <button class="btn btn btn-skillz btn-lg px-5" type="submit">Search</button>
       </div>
