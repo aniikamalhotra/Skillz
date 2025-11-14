@@ -87,7 +87,7 @@ switch ($page) {
         }
         $type = $_GET['type'];
         $article_id = $_GET['article_id'];
-        $controller->viewReviews();
+        $controller->viewReviews($type, $article_id);
         break;
     default:
         $controller->login();
