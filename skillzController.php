@@ -72,17 +72,15 @@ class skillzController {
         $search_query = "";
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['view-reviews'])) {
-                header("Location: /?page=viewreviews");
+                $article_id = $_POST['articleId'] ?? null;
+                if ($article_id) {
+                    header("Location: /?page=viewreviews&type=sports&article_id=" . urlencode($article_id));
+                    exit;
+                }
             } elseif (isset($_POST['add-review'])) {
                 $article_id = $_POST['articleId'] ?? null;
                 if ($article_id) {
                     header("Location: /?page=addreview&type=sports&article_id=" . urlencode($article_id));
-                    exit;
-                }
-            } elseif (isset($_POST['view-reviews'])) {
-                $article_id = $_POST['articleId'] ?? null;
-                if ($article_id) {
-                    header("Location: /?page=viewreviews&type=sports&article_id=" . urlencode($article_id));
                     exit;
                 }
             } elseif (isset($_POST['edit-review'])) {
@@ -103,17 +101,15 @@ class skillzController {
         $search_query = "";
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['view-reviews'])) {
-                header("Location: /?page=viewreviews");
+                $article_id = $_POST['articleId'] ?? null;
+                if ($article_id) {
+                    header("Location: /?page=viewreviews&type=music&article_id=" . urlencode($article_id));
+                    exit;
+                }
             } elseif (isset($_POST['add-review'])) {
                 $article_id = $_POST['articleId'] ?? null;
                 if ($article_id) {
                     header("Location: /?page=addreview&type=music&article_id=" . urlencode($article_id));
-                    exit;
-                }
-            } elseif (isset($_POST['view-reviews'])) {
-                $article_id = $_POST['articleId'] ?? null;
-                if ($article_id) {
-                    header("Location: /?page=viewreviews&type=music&article_id=" . urlencode($article_id));
                     exit;
                 }
             } elseif (isset($_POST['edit-review'])) {
@@ -134,27 +130,25 @@ class skillzController {
         $search_query = "";
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if (isset($_POST['view-reviews'])) {
-                header("Location: /?page=viewreviews");
+                $article_id = $_POST['articleId'] ?? null;
+                if ($article_id) {
+                    header("Location: /?page=viewreviews&type=art&article_id=" . urlencode($article_id));
+                    exit;
+                }
             } elseif (isset($_POST['add-review'])) {
-                header("Location: /?page=addreview");
+                $article_id = $_POST['articleId'] ?? null;
+                if ($article_id) {
+                    header("Location: /?page=addreview&type=art&article_id=" . urlencode($article_id));
+                    exit;
+                }
+                $search_query = $_POST['query'] ?? '';
             } elseif (isset($_POST['edit-review'])) {
                 $article_id = $_POST['articleId'] ?? null;
                 if ($article_id) {
                     header("Location: /?page=editreview&type=art&article_id=" . urlencode($article_id));
                     exit;
                 }
-            } elseif (isset($_POST['view-reviews'])) {
-                $article_id = $_POST['articleId'] ?? null;
-                if ($article_id) {
-                    header("Location: /?page=viewreviews&type=art&article_id=" . urlencode($article_id));
-                    exit;
-                }
             } else {
-                $article_id = $_POST['articleId'] ?? null;
-                if ($article_id) {
-                    header("Location: /?page=addreview&type=art&article_id=" . urlencode($article_id));
-                    exit;
-                }
                 $search_query = $_POST['query'] ?? '';
             }
         }

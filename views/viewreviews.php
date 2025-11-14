@@ -61,7 +61,7 @@ include_once('request-db.php');
     </form>
 
     <?php 
-      foreach ($review as $reviews) {
+      foreach ($reviews as $review) {
     ?>
       <div class="card-body">
         <h6 class="card-title"><em>Posted by <?= htmlspecialchars($review['user_name']) ?></em></h6>
