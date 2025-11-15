@@ -263,6 +263,10 @@ class skillzController {
         $reviews = getArticleReviews($article_id, $search_query);
         include 'views/viewreviews.php';
     }
+
+    public function myReviews() {
+        include 'views/myreviews.php';
+    }
 }
 
 

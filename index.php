@@ -89,6 +89,13 @@ switch ($page) {
         $article_id = $_GET['article_id'];
         $controller->viewReviews($type, $article_id);
         break;
+    case 'myreviews':
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /?page=login");
+            exit;
+        }
+        $controller->myReviews();
+        break;
     default:
         $controller->login();
         break;

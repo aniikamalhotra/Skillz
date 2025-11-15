@@ -470,4 +470,12 @@ function deleteRequest($senderId, $receiverId)
     $stmt->execute();
 }
 
+function getReviewsByUser($user_id) {
+    global $db;
+    $stmt = $db->prepare("SELECT * FROM Review r JOIN Article a ON r.article_id = a.article_id WHERE r.user_id = :user_id");
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 ?>
