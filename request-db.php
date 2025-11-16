@@ -439,9 +439,10 @@ function deleteReview($userId, $articleId)
 {
     global $db;
     $stmt = $db->prepare("DELETE FROM Review WHERE user_id = :user_id AND article_id = :article_id");
-    $stmt->bindParam(':user_id', $userId);
-    $stmt->bindParam(':article_id', $articleId);
-    $stmt->execute();
+    $stmt->execute([
+        ':user_id' => $userId,
+        ':article_id' => $articleId
+    ]);
 }
 
 function deleteArticle($articleId)
