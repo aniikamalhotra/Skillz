@@ -1,6 +1,7 @@
 <?php
 $loggedIn = isset($_SESSION['user_id']);
 $name = $loggedIn ? $_SESSION['user_name'] : '';
+include __DIR__ . '/navbar.php';
 ?>
 
 
@@ -65,6 +66,22 @@ $name = $loggedIn ? $_SESSION['user_name'] : '';
       padding: 2rem;
     }
 
+    @keyframes fadeInUp {
+      0% {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0%);
+        opacity: 1;
+      }
+      
+    }
+
+    .fadeInUp-animation {
+      animation: 1.5s fadeInUp;
+    }
+
   </style>
 </head>
 
@@ -76,17 +93,20 @@ $name = $loggedIn ? $_SESSION['user_name'] : '';
         <form method="post">
           <div class="white-card" style="width: 300px; margin: 0 auto;">
             <div class="text-center pt-2">
-              <input type="submit" name="music" value="Music" class="btn btn-skillz btn-lg w-100">
+              <input type="submit" name="music" value="Music" class="btn btn-skillz btn-lg w-100 fadeInUp-animation">
             </div>
             <div class="text-center mt-4 pt-2">
-              <input type="submit" name="art" value="Art" class="btn btn-skillz btn-lg w-100">
+              <input type="submit" name="art" value="Art" class="btn btn-skillz btn-lg w-100 fadeInUp-animation">
             </div>
             <div class="text-center mt-4 pt-2">
-              <input type="submit" name="sports" value="Sports" class="btn btn-skillz btn-lg w-100">
+              <input type="submit" name="sports" value="Sports" class="btn btn-skillz btn-lg w-100 fadeInUp-animation">
             </div>
           </div>
         </form>
     </div>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  
 </body>
 </html>

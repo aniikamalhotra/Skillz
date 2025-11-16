@@ -3,6 +3,7 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: /?page=login");
     exit;
 }
+include __DIR__ . '/navbar.php';
 ?>
 
 <!DOCTYPE html>
@@ -115,5 +116,7 @@ if (!isset($_SESSION['user_id'])) {
         </div>
     </div>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -1,3 +1,5 @@
+<?php include __DIR__ . '/navbar.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

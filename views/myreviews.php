@@ -6,9 +6,11 @@
 
 include_once('connect-db.php');
 include_once('request-db.php');
+include __DIR__ . '/navbar.php';
 
 $user_id = $_SESSION['user_id'];
 $reviews = getReviewsByUser($user_id);
+
 ?>
 
 <!DOCTYPE html>
