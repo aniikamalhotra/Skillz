@@ -89,7 +89,14 @@ class skillzController {
                     header("Location: /?page=editreview&type=sports&article_id=" . urlencode($article_id));
                     exit;
                 }
-            } else {
+            } elseif (isset($_POST['favorite'])){
+                $article_id = $_POST['articleId'] ?? null;
+                 if ($article_id) {
+                    $this->addFavorite($_SESSION['user_id'], $article_id, 'sports');
+                    exit;
+                }
+            }
+            else {
                 $search_query = $_POST['query'] ?? '';
             }
         }
@@ -118,7 +125,14 @@ class skillzController {
                     header("Location: /?page=editreview&type=music&article_id=" . urlencode($article_id));
                     exit;
                 }
-            } else {
+            } elseif (isset($_POST['favorite'])){
+                $article_id = $_POST['articleId'] ?? null;
+                 if ($article_id) {
+                    $this->addFavorite($_SESSION['user_id'], $article_id, 'music');
+                    exit;
+                }
+            }
+            else {
                 $search_query = $_POST['query'] ?? '';
             }
         }
@@ -148,7 +162,15 @@ class skillzController {
                     header("Location: /?page=editreview&type=art&article_id=" . urlencode($article_id));
                     exit;
                 }
-            } else {
+            } elseif (isset($_POST['favorite'])){
+                $article_id = $_POST['articleId'] ?? null;
+                 if ($article_id) {
+                    $this->addFavorite($_SESSION['user_id'], $article_id, 'art');
+                    exit;
+                }
+            }
+            
+            else {
                 $search_query = $_POST['query'] ?? '';
             }
         }
@@ -267,6 +289,22 @@ class skillzController {
     public function myReviews() {
         include 'views/myreviews.php';
     }
+
+    public function addFavorite($user_id, $article_id, $type) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            insertFavorite($_SESSION['user_id'], $article_id);
+            if ($type == "sports") {
+                header("Location: /?page=sportarticleslist");
+            } elseif ($type == "music") {
+                header("Location: /?page=musicarticleslist");
+            } elseif ($type == "art") {
+                header("Location: /?page=artarticleslist");
+            } else {}
+            exit;
+        }
+    }
+
 }
 
 
