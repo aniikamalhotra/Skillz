@@ -96,6 +96,15 @@ switch ($page) {
         }
         $controller->myReviews();
         break;
+    case 'addFavorite':
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /?page=login");
+            exit;
+        }
+        $type = $_GET['type'];
+        $article_id = $_GET['article_id'];
+        $controller->addFavorite($_SESSION['user_id'], $article_id, $type);
+        break;
     default:
         $controller->login();
         break;

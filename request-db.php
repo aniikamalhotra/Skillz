@@ -52,15 +52,27 @@ function insertArticle($user_id, $title, $link, $date_article, $author)
 function insertFavorite($user_id, $article_id)
 {
     global $db;
-    $stmt = $db->prepare("
-        INSERT INTO Favorite(user_id, article_id)
-        VALUES (:user_id, :article_id)
-    ");
-
+    $stmt = $db->prepare("SELECT * FROM Favorite WHERE user_id = :uid AND article_id = :aid");
     $stmt->execute([
-        ':user_id'    => $user_id,
-        ':article_id' => $article_id
+        ':uid' => $user_id,
+        ':aid' => $article_id
     ]);
+
+    if ($stmt->fetch()) {
+        // unfavorite
+        $delete = $db->prepare("DELETE FROM Favorite WHERE user_id = :uid AND article_id = :aid");
+        $delete->execute([
+            ':uid' => $user_id,
+            ':aid' => $article_id
+        ]);
+    } else {
+        // favorite
+        $insert = $db->prepare("INSERT INTO Favorite (user_id, article_id) VALUES (:uid, :aid)");
+        $insert->execute([
+            ':uid' => $user_id,
+            ':aid' => $article_id
+        ]);
+    }
 }
 
 function insertReview($user_id, $article_id, $review_text)
@@ -307,6 +319,20 @@ function getFavoritedArticles($userId)
     $stmt = $db->prepare("SELECT * FROM Article JOIN Favorite ON Article.article_id = Favorite.article_id WHERE user_id = :user_id");
     $stmt->execute([':user_id' => $userId]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function isFavorited($userId, $articleId)
+{
+    global $db;
+    $stmt = $db->prepare("SELECT COUNT(*) FROM Favorite WHERE user_id = :user_id AND article_id = :article_id");
+    $stmt->execute(
+        [
+            ':user_id' => $userId,
+            ':article_id' => $articleId
+        ]);
+    
+    return $stmt->fetchColumn() > 0;
+    
 }
 
 function updateUsername($newName, $userId)
