@@ -140,8 +140,10 @@
               <?php } else { ?>
                 <button type="submit" name="edit-review" class="btn btn-skillz btn-lg px-5">Edit Review</button>
               <?php } ?>
+            </form>
               <div class="rating-buttons">
                 <?php if ($liked): ?>
+                <form method="post">
                   <button type="submit" name="like_on" class="like-btn">
 
                     <!-- FILLED / LIKE SVG -->
@@ -150,7 +152,9 @@
                     </svg>
 
                   </button>
+                </form>
                 <?php else: ?>
+                <form method="post">
                   <button type="submit" name="like_off" class="like-btn">
 
                     <!-- OUTLINE / LIKE SVG -->
@@ -159,6 +163,7 @@
                     </svg>
 
                   </button>
+                </form>
                 <?php endif; ?>
 
                 <?php if ($disliked): ?>

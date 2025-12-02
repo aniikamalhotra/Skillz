@@ -96,6 +96,7 @@ class skillzController {
                     exit;
                 }
             } elseif (isset($_POST['like_on'])){
+                error_log("like_on triggered: " . $_POST['articleId']);
                 $article_id = $_POST['articleId'] ?? null;
                  if ($article_id) {
                     upVote($_SESSION['user_id'], $article_id);
@@ -103,6 +104,7 @@ class skillzController {
                     exit;
                 }
             } elseif (isset($_POST['dislike_on'])){
+                error_log("dislike_on triggered: " . $_POST['articleId']);
                 $article_id = $_POST['articleId'] ?? null;
                 if ($article_id) {
                     downVote($_SESSION['user_id'], $article_id);
@@ -110,6 +112,7 @@ class skillzController {
                     exit;
                 }
             } elseif (isset($_POST['like_off']) or isset($_POST['dislike_off'])){
+                error_log("like_off or dislike_off triggered: " . $_POST['articleId']);
                 $article_id = $_POST['articleId'] ?? null;
                 if ($article_id) {
                     cancelVote($_SESSION['user_id'], $article_id);
