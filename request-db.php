@@ -376,40 +376,54 @@ function updatePassword($newPassword, $userId)
     ]);
 }
 
+function voteEntryExists($userId, $articleId)
+{
+    global $db;
+    $stmt = $db->prepare("SELECT COUNT(*) FROM Vote WHERE user_id = :user_id AND article_id = :article_id");
+    $stmt->execute([
+        ':user_id' => $userId,
+        ':article_id' => $articleId
+    ]);
+
+    return $stmt->fetchColumn() > 0;
+}
+
 function upVote($userId, $articleId)
 {
     global $db;
 
-    if voteEntryExists($userId, $articleId):
+    if (voteEntryExists($userId, $articleId)) {
         $stmt = $db->prepare("UPDATE Vote SET is_up = TRUE, is_down = FALSE WHERE user_id = :user_id AND article_id = :article_id");
         $stmt->execute([
             ':user_id' => $userId,
             ':article_id' => $articleId
         ]);
-    else:
-        $stmt = $db->prepare("INSERT INTO Vote (user_id, article_id, is_up, is_down) VALUES (:uid, :aid, TRUE, FALSE)");
+    } else {
+        $stmt = $db->prepare("INSERT INTO Vote (user_id, article_id, is_up, is_down) VALUES (:user_id, :article_id, TRUE, FALSE)");
         $stmt->execute([
             ':user_id' => $userId,
             ':article_id' => $articleId
         ]);
+    }
 }
 
 function downVote($userId, $articleId)
 {
     global $db;
 
-    if voteEntryExists($userId, $articleI):
+    if (voteEntryExists($userId, $articleId)) {
         $stmt = $db->prepare("UPDATE Vote SET is_up = FALSE, is_down = TRUE WHERE user_id = :user_id AND article_id = :article_id");
         $stmt->execute([
             ':user_id' => $userId,
             ':article_id' => $articleId
         ]);
-    else:
-        $stmt = $db->prepare("INSERT INTO Vote (user_id, article_id, is_up, is_down) VALUES (:uid, :aid, FALSE, TRUE)");
+    } else {
+        $stmt = $db->prepare("INSERT INTO Vote (user_id, article_id, is_up, is_down) VALUES (:user_id, :article_id, FALSE, TRUE)");
         $stmt->execute([
             ':user_id' => $userId,
             ':article_id' => $articleId
-        ]);      
+        ]);   
+    }   
 }
 
 function cancelVote($userId, $articleId)
@@ -422,22 +436,10 @@ function cancelVote($userId, $articleId)
     ]);
 }
 
-function voteEntryExists($userId, $articleId)
-{
-    global $db;
-    $stmt = $db->prepare("SELECT * FROM Vote WHERE user_id = :user_id AND article_id = :article_id");
-    $stmt->execute([
-        ':user_id' => $userId,
-        ':article_id' => $articleId
-    ]);
-
-    return $stmt->fetchColumn() > 0;
-}
-
 function isUpVote($userId, $articleId)
 {
     global $db;      
-    $stmt = $db->prepare("SELECT * FROM Vote WHERE user_id = :user_id AND article_id = :article_id AND is_up = TRUE AND is_down = FALSE");
+    $stmt = $db->prepare("SELECT COUNT(*) FROM Vote WHERE user_id = :user_id AND article_id = :article_id AND is_up = TRUE AND is_down = FALSE");
     $stmt->execute([
         ':user_id' => $userId,
         ':article_id' => $articleId
@@ -449,7 +451,7 @@ function isUpVote($userId, $articleId)
 function isDownVote($userId, $articleId)
 {
     global $db;
-    $stmt = $db->prepare("SELECT * FROM Vote WHERE user_id = :user_id AND article_id = :article_id AND is_up = FALSE AND is_down = TRUE");
+    $stmt = $db->prepare("SELECT COUNT(*) FROM Vote WHERE user_id = :user_id AND article_id = :article_id AND is_up = FALSE AND is_down = TRUE");
     $stmt->execute([
         ':user_id' => $userId,
         ':article_id' => $articleId
