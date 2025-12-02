@@ -99,18 +99,21 @@ class skillzController {
                 $article_id = $_POST['articleId'] ?? null;
                  if ($article_id) {
                     upVote($_SESSION['user_id'], $article_id);
+                    header("Location: /?page=sportarticleslist");
                     exit;
                 }
             } elseif (isset($_POST['dislike']) and !isset($_POST['like'])){
                 $article_id = $_POST['articleId'] ?? null;
                  if ($article_id) {
                     downVote($_SESSION['user_id'], $article_id);
+                    header("Location: /?page=sportarticleslist");
                     exit;
                 }
             } elseif (!isset($_POST['like']) and !isset($_POST['dislike'])){
                 $article_id = $_POST['articleId'] ?? null;
                  if ($article_id) {
                     cancelVote($_SESSION['user_id'], $article_id);
+                    header("Location: /?page=sportarticleslist");
                     exit;
                 }
             }
