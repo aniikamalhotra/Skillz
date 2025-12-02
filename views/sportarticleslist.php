@@ -144,6 +144,7 @@
               <div class="rating-buttons">
                 <?php if ($liked): ?>
                 <form method="post">
+                  <input type="hidden" id="articleId" name="articleId" value="<?php echo $article["article_id"] ?>">
                   <button type="submit" name="like_on" class="like-btn">
 
                     <!-- FILLED / LIKE SVG -->
@@ -155,6 +156,7 @@
                 </form>
                 <?php else: ?>
                 <form method="post">
+                  <input type="hidden" id="articleId" name="articleId" value="<?php echo $article["article_id"] ?>">
                   <button type="submit" name="like_off" class="like-btn">
 
                     <!-- OUTLINE / LIKE SVG -->
