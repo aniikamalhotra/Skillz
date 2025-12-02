@@ -95,7 +95,7 @@ class skillzController {
                     $this->addFavorite($_SESSION['user_id'], $article_id, 'sports');
                     exit;
                 }
-            } elseif (isset($_POST['like_on'])){
+            } elseif (isset($_POST['like_off'])){
                 $article_id = $_POST['articleId'] ?? null;
                 echo "<script>console.log('like_on clicked for article_id: " . $article_id . "');</script>";
                  if ($article_id) {
@@ -103,7 +103,7 @@ class skillzController {
                     header("Location: /?page=sportarticleslist");
                     exit;
                 }
-            } elseif (isset($_POST['dislike_on'])){
+            } elseif (isset($_POST['dislike_off'])){
                 $article_id = $_POST['articleId'] ?? null;
                 echo "<script>console.log('dislike_on clicked for article_id: " . $article_id . "');</script>";
                 if ($article_id) {
@@ -111,7 +111,7 @@ class skillzController {
                     header("Location: /?page=sportarticleslist");
                     exit;
                 }
-            } elseif (isset($_POST['like_off']) or isset($_POST['dislike_off'])){
+            } elseif (isset($_POST['like_on']) or isset($_POST['dislike_on'])){
                 $article_id = $_POST['articleId'] ?? null;
                 echo "<script>console.log('like_off or dislike_off clicked for article_id: " . $article_id . "');</script>";
                 if ($article_id) {
