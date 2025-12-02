@@ -379,21 +379,37 @@ function updatePassword($newPassword, $userId)
 function upVote($userId, $articleId)
 {
     global $db;
-    $stmt = $db->prepare("UPDATE Vote SET is_up = TRUE, is_down = FALSE WHERE user_id = :user_id AND article_id = :article_id");
-    $stmt->execute([
-        ':user_id' => $userId,
-        ':article_id' => $articleId
-    ]);
+
+    if voteEntryExists($userId, $articleId):
+        $stmt = $db->prepare("UPDATE Vote SET is_up = TRUE, is_down = FALSE WHERE user_id = :user_id AND article_id = :article_id");
+        $stmt->execute([
+            ':user_id' => $userId,
+            ':article_id' => $articleId
+        ]);
+    else:
+        $stmt = $db->prepare("INSERT INTO Vote (user_id, article_id, is_up, is_down) VALUES (:uid, :aid, TRUE, FALSE)");
+        $stmt->execute([
+            ':user_id' => $userId,
+            ':article_id' => $articleId
+        ]);
 }
 
 function downVote($userId, $articleId)
 {
     global $db;
-    $stmt = $db->prepare("UPDATE Vote SET is_up = FALSE, is_down = TRUE WHERE user_id = :user_id AND article_id = :article_id");
-    $stmt->execute([
-        ':user_id' => $userId,
-        ':article_id' => $articleId
-    ]);
+
+    if voteEntryExists($userId, $articleI):
+        $stmt = $db->prepare("UPDATE Vote SET is_up = FALSE, is_down = TRUE WHERE user_id = :user_id AND article_id = :article_id");
+        $stmt->execute([
+            ':user_id' => $userId,
+            ':article_id' => $articleId
+        ]);
+    else:
+        $stmt = $db->prepare("INSERT INTO Vote (user_id, article_id, is_up, is_down) VALUES (:uid, :aid, FALSE, TRUE)");
+        $stmt->execute([
+            ':user_id' => $userId,
+            ':article_id' => $articleId
+        ]);      
 }
 
 function cancelVote($userId, $articleId)
@@ -406,14 +422,28 @@ function cancelVote($userId, $articleId)
     ]);
 }
 
-function isUpVote($userId, $articleId)
+function voteEntryExists($userId, $articleId)
 {
     global $db;
+    $stmt = $db->prepare("SELECT * FROM Vote WHERE user_id = :user_id AND article_id = :article_id");
+    $stmt->execute([
+        ':user_id' => $userId,
+        ':article_id' => $articleId
+    ]);
+
+    return $stmt->fetchColumn() > 0;
+}
+
+function isUpVote($userId, $articleId)
+{
+    global $db;      
     $stmt = $db->prepare("SELECT * FROM Vote WHERE user_id = :user_id AND article_id = :article_id AND is_up = TRUE AND is_down = FALSE");
     $stmt->execute([
         ':user_id' => $userId,
         ':article_id' => $articleId
     ]);
+
+    return $stmt->fetchColumn() > 0;
 }
 
 function isDownVote($userId, $articleId)
@@ -424,6 +454,8 @@ function isDownVote($userId, $articleId)
         ':user_id' => $userId,
         ':article_id' => $articleId
     ]);
+
+    return $stmt->fetchColumn() > 0;
 }
 
 function updateReviewText($userId, $articleId, $reviewText)
