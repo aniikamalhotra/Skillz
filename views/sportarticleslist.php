@@ -144,7 +144,7 @@
             </form>
         <div class="rating-buttons">
            <form method="post">
-                <input type="hidden" name="articleId" value="<?= $article['article_id'] ?>">
+                <input type="hidden" name="articleIdLike" value="<?= $article['article_id'] ?>">
                 <?php if ($liked): ?>
                   <button
                     type="submit"
@@ -180,7 +180,7 @@
            </form>
 
            <form method="post">
-                <input type="hidden" name="articleId" value="<?= $article['article_id'] ?>">
+                <input type="hidden" name="articleIdDislike" value="<?= $article['article_id'] ?>">
                 <?php if ($disliked): ?>
                   <button
                   type="submit"
