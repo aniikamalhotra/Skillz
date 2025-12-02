@@ -41,7 +41,35 @@
     .bookmark-btn:hover{
       color: #2f45cf;
     }
-
+     .like-btn {
+      position: relative;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: #0c5d37ff;
+      cursor: pointer;
+    }
+    .like-btn:hover{
+      color: #16ab4aff;
+    }
+     .dislike-btn {
+      position: relative;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: #5d0c0cff;
+      cursor: pointer;
+    }
+    .dislike-btn:hover{
+      color: #ab1616ff;
+    }
+  .rating-buttons {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    gap: 10px;
+  }
     .card{
       position: relative;
     }
@@ -114,13 +142,13 @@
                 <button type="submit" name="edit-review" class="btn btn-skillz btn-lg px-5">Edit Review</button>
               <?php } ?>
             </form>
-
+        <div class="rating-buttons">
            <form method="post">
                 <input type="hidden" name="articleId" value="<?= $article['article_id'] ?>">
                 <button
                   type="submit"
                   name="like"
-                  class="bookmark-btn"
+                  class="like-btn"
                   aria-pressed="<?= $liked ? 'true' : 'false' ?>"
                   aria-label="<?= $liked ? 'Remove like' : 'Add like' ?>"
                   title="<?= $liked ? 'Remove like' : 'Add like' ?>">
@@ -145,7 +173,7 @@
                 <button
                   type="submit"
                   name="dislike"
-                  class="bookmark-btn"
+                  class="dislike-btn"
                   aria-pressed="<?= $disliked ? 'true' : 'false' ?>"
                   aria-label="<?= $disliked ? 'Remove dislike' : 'Add dislike' ?>"
                   title="<?= $disliked ? 'Remove dislike' : 'Add dislike' ?>">
@@ -164,6 +192,7 @@
 
                 </button>
            </form>
+          </div>
 
           </div>
         </div>
