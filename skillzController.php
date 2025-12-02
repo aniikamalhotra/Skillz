@@ -95,6 +95,24 @@ class skillzController {
                     $this->addFavorite($_SESSION['user_id'], $article_id, 'sports');
                     exit;
                 }
+            } elseif (isset($_POST['liked']) and !isset($_POST['dislikes'])){
+                $article_id = $_POST['articleId'] ?? null;
+                 if ($article_id) {
+                    upVote($_SESSION['user_id'], $article_id);
+                    exit;
+                }
+            } elseif (isset($_POST['disliked']) and !isset($_POST['liked'])){
+                $article_id = $_POST['articleId'] ?? null;
+                 if ($article_id) {
+                    downVote($_SESSION['user_id'], $article_id);
+                    exit;
+                }
+            } elseif (!isset($_POST['liked']) and !isset($_POST['disliked'])){
+                $article_id = $_POST['articleId'] ?? null;
+                 if ($article_id) {
+                    cancelVote($_SESSION['user_id'], $article_id);
+                    exit;
+                }
             }
             else {
                 $search_query = $_POST['query'] ?? '';

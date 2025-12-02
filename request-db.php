@@ -406,6 +406,26 @@ function cancelVote($userId, $articleId)
     ]);
 }
 
+function isUpVote($userId, $articleId)
+{
+    global $db;
+    $stmt = $db->prepare("SELECT * FROM Vote WHERE user_id = :user_id AND article_id = :article_id AND is_up = TRUE AND is_down = FALSE");
+    $stmt->execute([
+        ':user_id' => $userId,
+        ':article_id' => $articleId
+    ]);
+}
+
+function isDownVote($userId, $articleId)
+{
+    global $db;
+    $stmt = $db->prepare("SELECT * FROM Vote WHERE user_id = :user_id AND article_id = :article_id AND is_up = FALSE AND is_down = TRUE");
+    $stmt->execute([
+        ':user_id' => $userId,
+        ':article_id' => $articleId
+    ]);
+}
+
 function updateReviewText($userId, $articleId, $reviewText)
 {
     global $db;
