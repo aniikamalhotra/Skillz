@@ -315,57 +315,31 @@ class skillzController {
     }
 
     public function addFavorite($user_id, $article_id, $type) {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        insertFavorite($user_id, $article_id, $type);
 
-            insertFavorite($_SESSION['user_id'], $article_id);
-            if ($type == "sports") {
-                header("Location: /?page=sportarticleslist");
-            } elseif ($type == "music") {
-                header("Location: /?page=musicarticleslist");
-            } elseif ($type == "art") {
-                header("Location: /?page=artarticleslist");
-            } else {}
-            exit;
-        }
+        $redirect = $_POST['redirect'] ?? $type . 'articleslist'; // default fallback
+        header("Location: /?page=" . $redirect);
+        exit;
     }
 
-    public function viewFavorite($user_id) {
-        $search_query = "";
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (isset($_POST['view-reviews'])) {
-                $article_id = $_POST['articleId'] ?? null;
-                if ($article_id) {
-                    header("Location: /?page=viewreviews&type=art&article_id=" . urlencode($article_id));
-                    exit;
-                }
-            } elseif (isset($_POST['add-review'])) {
-                $article_id = $_POST['articleId'] ?? null;
-                if ($article_id) {
-                    header("Location: /?page=addreview&type=art&article_id=" . urlencode($article_id));
-                    exit;
-                }
-                $search_query = $_POST['query'] ?? '';
-            } elseif (isset($_POST['edit-review'])) {
-                $article_id = $_POST['articleId'] ?? null;
-                if ($article_id) {
-                    header("Location: /?page=editreview&type=art&article_id=" . urlencode($article_id));
-                    exit;
-                }
-            } elseif (isset($_POST['favorite'])){
-                $article_id = $_POST['articleId'] ?? null;
-                 if ($article_id) {
-                    $this->addFavorite($_SESSION['user_id'], $article_id, 'art');
-                    exit;
-                }
-            }
-            
-            else {
-                $search_query = $_POST['query'] ?? '';
+    public function viewFavorite() {
+        if (!isset($_SESSION['user_id'])) {
+        header("Location: /?page=login");
+        exit;
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['favorite'])) {
+            $article_id = $_POST['articleId'] ?? null;
+            $type = $_POST['articleType'] ?? null;
+            if ($article_id && $type) {
+                insertFavorite($_SESSION['user_id'], $article_id, $type); // toggle favorite
+                header("Location: /?page=viewfavorites"); // reload page
+                exit;
             }
         }
-        $articles = getFavoritedArticles($user_id);
-    }
 
+        $articles = getFavoritedArticles($_SESSION['user_id']); 
+        include 'views/viewfavorites.php';
+    }
 }
 
 
