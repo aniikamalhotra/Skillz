@@ -305,6 +305,43 @@ class skillzController {
         }
     }
 
+    public function viewFavorite($user_id) {
+        $search_query = "";
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (isset($_POST['view-reviews'])) {
+                $article_id = $_POST['articleId'] ?? null;
+                if ($article_id) {
+                    header("Location: /?page=viewreviews&type=art&article_id=" . urlencode($article_id));
+                    exit;
+                }
+            } elseif (isset($_POST['add-review'])) {
+                $article_id = $_POST['articleId'] ?? null;
+                if ($article_id) {
+                    header("Location: /?page=addreview&type=art&article_id=" . urlencode($article_id));
+                    exit;
+                }
+                $search_query = $_POST['query'] ?? '';
+            } elseif (isset($_POST['edit-review'])) {
+                $article_id = $_POST['articleId'] ?? null;
+                if ($article_id) {
+                    header("Location: /?page=editreview&type=art&article_id=" . urlencode($article_id));
+                    exit;
+                }
+            } elseif (isset($_POST['favorite'])){
+                $article_id = $_POST['articleId'] ?? null;
+                 if ($article_id) {
+                    $this->addFavorite($_SESSION['user_id'], $article_id, 'art');
+                    exit;
+                }
+            }
+            
+            else {
+                $search_query = $_POST['query'] ?? '';
+            }
+        }
+        $articles = getFavoritedArticles($user_id);
+    }
+
 }
 
 
