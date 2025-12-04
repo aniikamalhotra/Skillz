@@ -1,8 +1,7 @@
 <?php
 
-// TODO: Fix edit review functionality
-// TODO: Fix delete review functionality
-// TODO: Check that dates are accurate
+// TODO: Fix edit review functionality -- it works, but getting type error on editreview.php
+// TODO: Fix edit "button" styling
 
 include_once('connect-db.php');
 include_once('request-db.php');
@@ -51,15 +50,18 @@ $reviews = getReviewsByUser($user_id);
             <div class="d-flex justify-content-between align-items-start">
               <div>
                 <strong><?php echo htmlspecialchars($r['title'] ?? 'Untitled'); ?></strong>
-                <div class="meta">Reviewed on <?php echo htmlspecialchars(date('M j, Y', strtotime($r['created_at'] ?? $r['date'] ?? date('Y-m-d')))); ?></div>
               </div>
             </div>
 
             <p class="mt-2 mb-2"><?php echo nl2br(htmlspecialchars($r['review_text'] ?? '')); ?></p>
 
             <div class="d-flex gap-2 mt-2">
-              <a href="/?page=editreview&id=<?php echo urlencode($r['id']); ?>" class="btn-skillz btn-sm">Edit</a>
-              <a href="/?page=deletereview&id=<?php echo urlencode($r['id']); ?>" class="btn btn-outline-danger btn-sm" onclick="return confirm('Delete this review?');">Delete</a>
+              <a href="/?page=editreview&article_id=<?php echo urlencode($r['article_id']); ?>&id=<?php echo urlencode($r['id']); ?>" class="btn btn-skillz btn-lg px-5">Edit</a>
+              <form method="post" action="/?page=deletereview" style="display:inline;">
+                <input type="hidden" name="article_id" value="<?php echo htmlspecialchars($r['article_id']); ?>">
+                <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($_SESSION['user_id']); ?>">
+                <button type="submit" class="btn btn-skillz btn-lg px-5" onclick="return confirm('Delete this review?');">Delete</button>
+              </form>
             </div>
           </div>
         <?php endforeach; ?>
