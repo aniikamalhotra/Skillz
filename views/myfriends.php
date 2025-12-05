@@ -10,9 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $user_id = $_SESSION['user_id'];
-// TODO: Add getFriendsByUser($user_id) helper to request-db.php to fetch all friends
-// For now, placeholder until helper is added
-$friends = []; // Will be populated after helper added
+$friends = getFriendsByUser($user_id); 
 
 ?>
 
