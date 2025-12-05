@@ -92,7 +92,8 @@ class skillzController {
             } elseif (isset($_POST['favorite'])){
                 $article_id = $_POST['articleId'] ?? null;
                  if ($article_id) {
-                    $this->addFavorite($_SESSION['user_id'], $article_id, 'sports');
+                    $this->addFavorite($_SESSION['user_id'], $article_id, 'sport');
+                    header("Location: /?page=sportarticleslist");
                     exit;
                 }
             } elseif (isset($_POST['like_off'])){
@@ -314,21 +315,44 @@ class skillzController {
         include 'views/myreviews.php';
     }
 
-    public function addFavorite($user_id, $article_id, $type) {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-            insertFavorite($_SESSION['user_id'], $article_id);
-            if ($type == "sports") {
-                header("Location: /?page=sportarticleslist");
-            } elseif ($type == "music") {
-                header("Location: /?page=musicarticleslist");
-            } elseif ($type == "art") {
-                header("Location: /?page=artarticleslist");
-            } else {}
+    
+    public function myFriends() {
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /?page=login");
             exit;
         }
+        
+        $user_id = $_SESSION['user_id'];
+        $friends = getFriendsByUser($user_id);
+        include 'views/myfriends.php';
     }
 
+    public function addFavorite($user_id, $article_id, $type) {
+        insertFavorite($user_id, $article_id, $type);
+
+        $redirect = $_POST['redirect'] ?? $type . 'articleslist'; // default fallback
+        header("Location: /?page=" . $redirect);
+        exit;
+    }
+
+    public function viewFavorite() {
+        if (!isset($_SESSION['user_id'])) {
+        header("Location: /?page=login");
+        exit;
+        }
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['favorite'])) {
+            $article_id = $_POST['articleId'] ?? null;
+            $type = $_POST['articleType'] ?? null;
+            if ($article_id && $type) {
+                insertFavorite($_SESSION['user_id'], $article_id, $type); // toggle favorite
+                header("Location: /?page=viewfavorites"); // reload page
+                exit;
+            }
+        }
+
+        $articles = getFavoritedArticles($_SESSION['user_id']); 
+        include 'views/viewfavorites.php';
+    }
 }
 
 
