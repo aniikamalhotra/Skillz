@@ -562,4 +562,19 @@ function getReviewsByUser($user_id) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+
+function getFriendsByUser($user_id) {
+    global $db;
+    $sql = "
+      SELECT u.user_id, u.user_name, u.email
+      FROM Users u
+      JOIN Friend f ON (u.user_id = f.user_2_id OR u.user_id = f.user_1_id)
+      WHERE (f.user_1_id = :user_id OR f.user_2_id = :user_id)
+        AND u.user_id != :user_id
+    ";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([':user_id' => $user_id]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 ?>

@@ -124,6 +124,15 @@ switch ($page) {
         }
         $controller->viewFavorite();
         break;
+
+    case 'myfriends':
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /?page=login");
+            exit;
+        }
+        $controller->myFriends();
+        break;
+
     default:
         $controller->login();
         break;
