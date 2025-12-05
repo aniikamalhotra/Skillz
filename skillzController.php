@@ -314,6 +314,18 @@ class skillzController {
         include 'views/myreviews.php';
     }
 
+    
+    public function myFriends() {
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /?page=login");
+            exit;
+        }
+        
+        $user_id = $_SESSION['user_id'];
+        $friends = getFriendsByUser($user_id);
+        include 'views/myfriends.php';
+    }
+
     public function addFavorite($user_id, $article_id, $type) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 

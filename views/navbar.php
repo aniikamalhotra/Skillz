@@ -14,6 +14,9 @@
         <li class="nav-item">
           <a class="nav-link" href="/?page=myreviews">My Reviews</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/?page=myfriends">My Friends</a>
+        </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Articles

@@ -117,6 +117,15 @@ switch ($page) {
         $article_id = $_GET['article_id'];
         $controller->addFavorite($_SESSION['user_id'], $article_id, $type);
         break;
+
+    case 'myfriends':
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /?page=login");
+            exit;
+        }
+        $controller->myFriends();
+        break;
+
     default:
         $controller->login();
         break;
