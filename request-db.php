@@ -429,11 +429,13 @@ function downVote($userId, $articleId)
 function cancelVote($userId, $articleId)
 {
     global $db;
-    $stmt = $db->prepare("UPDATE Vote SET is_up = FALSE, is_down = FALSE WHERE user_id = :user_id AND article_id = :article_id");
-    $stmt->execute([
-        ':user_id' => $userId,
-        ':article_id' => $articleId
-    ]);
+    if (voteEntryExists($userId, $articleId)) {
+        $stmt = $db->prepare("DELETE FROM Vote WHERE user_id = :user_id AND article_id = :article_id");
+        $stmt->execute([
+            ':user_id' => $userId,
+            ':article_id' => $articleId
+        ]);
+    }
 }
 
 function isUpVote($userId, $articleId)
