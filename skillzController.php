@@ -92,7 +92,8 @@ class skillzController {
             } elseif (isset($_POST['favorite'])){
                 $article_id = $_POST['articleId'] ?? null;
                  if ($article_id) {
-                    $this->addFavorite($_SESSION['user_id'], $article_id, 'sports');
+                    $this->addFavorite($_SESSION['user_id'], $article_id, 'sport');
+                    header("Location: /?page=sportarticleslist");
                     exit;
                 }
             } elseif (isset($_POST['like_off'])){
