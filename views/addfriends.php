@@ -97,8 +97,8 @@
         $uid = $user['user_id'];
 
         $isFriend = in_array($uid, array_column($friends, 'user_id')) ?? [];
-        $isPendingSent = in_array($uid, array_column($sent_requests, 'user_id')) ?? [];
-        $isPendingReceived = in_array($uid, array_column($received_requests, 'user_id')) ?? [];
+        $isPendingSent = in_array($uid, array_column($sent_requests, 'sender_id')) ?? [];
+        $isPendingReceived = in_array($uid, array_column($received_requests, 'receiver_id')) ?? [];
   ?>
       <div class="col-sm-6">
         <div class="card">
