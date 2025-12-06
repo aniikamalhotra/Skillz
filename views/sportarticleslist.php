@@ -133,15 +133,15 @@
               <p class="card-text"><em>Author: <?= htmlspecialchars($article['author']) ?></em></p>
               <p class="card-text"><em>Date Published: <?= htmlspecialchars($article['date_article']) ?></em></p>
               <p class="card-text"><a href="<?= htmlspecialchars($article['link']) ?>" target="_blank">Go to Article</a></p>
-            <form method="post">
-              <input type="hidden" id="articleId" name="articleId" value="<?php echo $article["article_id"] ?>">
-              <button type="submit" name="view-reviews" class="btn btn-skillz btn-lg px-5">View Review</button>
-              <?php if (count(getSpecificArticleReview($_SESSION["user_id"], $article["article_id"])) == 0) { ?>
-                <button type="submit" name="add-review" class="btn btn-skillz btn-lg px-5">Add Review</button>              
-              <?php } else { ?>
-                <button type="submit" name="edit-review" class="btn btn-skillz btn-lg px-5">Edit Review</button>
-              <?php } ?>
-            </form>
+              <form method="post">
+                <input type="hidden" id="articleId" name="articleId" value="<?php echo $article["article_id"] ?>">
+                <button type="submit" name="view-reviews" class="btn btn-skillz btn-lg px-5">View Review</button>
+                <?php if (count(getSpecificArticleReview($_SESSION["user_id"], $article["article_id"])) == 0) { ?>
+                  <button type="submit" name="add-review" class="btn btn-skillz btn-lg px-5">Add Review</button>              
+                <?php } else { ?>
+                  <button type="submit" name="edit-review" class="btn btn-skillz btn-lg px-5">Edit Review</button>
+                <?php } ?>
+              </form>
               <div class="rating-buttons">
                 <?php if ($liked): ?>
                   <form method="post">
@@ -171,6 +171,7 @@
 
                 <?php if ($disliked): ?>
                   <form method="post">
+                    <input type="hidden" id="articleId" name="articleId" value="<?php echo $article["article_id"] ?>">
                     <button type="submit" name="dislike_on" class="dislike-btn">
 
                       <!-- FILLED / DISLIKE SVG -->
@@ -182,6 +183,7 @@
                   </form>
                 <?php else: ?>
                   <form method="post">
+                    <input type="hidden" id="articleId" name="articleId" value="<?php echo $article["article_id"] ?>">
                     <button type="submit" name="dislike_off" class="dislike-btn">
 
                       <!-- OUTLINE / DISLIKE SVG -->
