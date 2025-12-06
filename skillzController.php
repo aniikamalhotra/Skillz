@@ -381,11 +381,11 @@ class skillzController {
                 header("Location: /?page=myfriends");
                 exit;
             }
-        }
+        } else {}
         
         $user_id = $_SESSION['user_id'];
         $friends = getFriendsByUser($user_id);
-        $received_requests = getRequests($user_id)
+        $received_requests = getRequests($user_id);
         include 'views/myfriends.php';
     }
 
@@ -407,13 +407,13 @@ class skillzController {
                 header("Location: /?page=addfriends");
                 exit;
             }
-        }
+        } else {}
         
         $user_id = $_SESSION['user_id'];
         $all_users = getAllUsers();
         $friends = getFriendsByUser($user_id);
-        $sent_requests = getSentRequests($user_id)
-        $received_requests = getRequests($user_id)
+        $sent_requests = getSentRequests($user_id);
+        $received_requests = getRequests($user_id);
         include 'views/addfriends.php';
     }
 
