@@ -95,6 +95,8 @@
     foreach ($articles as $article) :
   ?>
     <?php $favorited = isFavorited($_SESSION["user_id"], $article["article_id"]); ?>
+    <?php $liked = isUpVote($_SESSION["user_id"], $article["article_id"]); ?>
+    <?php $disliked = isDownVote($_SESSION["user_id"], $article["article_id"]); ?>
       <div class="col-sm-6">
         <div class="card">
            <form method="post">
