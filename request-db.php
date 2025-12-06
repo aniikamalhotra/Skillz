@@ -189,6 +189,13 @@ function getUser($user_id)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function getAllUsers()
+{
+    global $db;
+    $stmt = $db->prepare("SELECT * FROM Users");
+    $stmt->execute([]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
 function getAllSportsArticles($search_query)
 {
@@ -545,6 +552,10 @@ function deleteFriend($user1Id, $user2Id)
     $stmt->bindParam(':user_1_id', $user1Id);
     $stmt->bindParam(':user_2_id', $user2Id);
     $stmt->execute();
+    $stmt = $db->prepare("DELETE FROM Friend WHERE user_1_id = :user_1_id AND user_2_id = :user_2_id");
+    $stmt->bindParam(':user_1_id', $user2Id);
+    $stmt->bindParam(':user_2_id', $user1Id);
+    $stmt->execute();
 }
 
 function deleteRequest($senderId, $receiverId)
@@ -552,6 +563,22 @@ function deleteRequest($senderId, $receiverId)
     global $db;
     $stmt = $db->prepare("DELETE FROM Request WHERE sender_id = :sender_id AND receiver_id = :receiver_id");
     $stmt->bindParam(':sender_id', $senderId);
+    $stmt->bindParam(':receiver_id', $receiverId);
+    $stmt->execute();
+}
+
+function getSentRequests($senderId)
+{
+    global $db;
+    $stmt = $db->prepare("SELECT * FROM Request WHERE sender_id = :sender_id");
+    $stmt->bindParam(':sender_id', $senderId);
+    $stmt->execute();
+}
+
+function getReceivedRequests($receiverId)
+{
+    global $db;
+    $stmt = $db->prepare("SELECT * FROM Request WHERE receiver_id = :receiver_id");
     $stmt->bindParam(':receiver_id', $receiverId);
     $stmt->execute();
 }

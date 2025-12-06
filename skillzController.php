@@ -362,16 +362,59 @@ class skillzController {
         include 'views/myreviews.php';
     }
 
-    
     public function myFriends() {
         if (!isset($_SESSION['user_id'])) {
             header("Location: /?page=login");
             exit;
         }
+        $user_id = $_POST['user_id'] ?? null;
+        if (isset($_POST['accept'])) {
+            if ($user_id) {
+                insertFriend($user_id, $_SESSION['user_id']);
+                deleteRequest($user_id, $_SESSION['user_id']);
+                header("Location: /?page=myfriends");
+                exit;
+            }
+        } elseif (isset($_POST['reject'])) {
+            if ($user_id) {
+                deleteRequest($user_id, $_SESSION['user_id']);
+                header("Location: /?page=myfriends");
+                exit;
+            }
+        }
         
         $user_id = $_SESSION['user_id'];
         $friends = getFriendsByUser($user_id);
+        $received_requests = getRequests($user_id)
         include 'views/myfriends.php';
+    }
+
+    public function addFriends() {
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /?page=login");
+            exit;
+        }
+        $user_id = $_POST['user_id'] ?? null;
+        if (isset($_POST['addfriend'])) {
+            if ($user_id) {
+                insertRequest($_SESSION['user_id'], $user_id);
+                header("Location: /?page=addfriends");
+                exit;
+            }
+        } elseif (isset($_POST['unfriend'])) {
+            if ($user_id) {
+                deleteFriend($_SESSION['user_id'], $user_id);
+                header("Location: /?page=addfriends");
+                exit;
+            }
+        }
+        
+        $user_id = $_SESSION['user_id'];
+        $all_users = getAllUsers();
+        $friends = getFriendsByUser($user_id);
+        $sent_requests = getSentRequests($user_id)
+        $received_requests = getRequests($user_id)
+        include 'views/addfriends.php';
     }
 
     public function addFavorite($user_id, $article_id, $type) {

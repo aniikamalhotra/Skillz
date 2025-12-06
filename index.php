@@ -124,7 +124,6 @@ switch ($page) {
         }
         $controller->viewFavorite();
         break;
-
     case 'myfriends':
         if (!isset($_SESSION['user_id'])) {
             header("Location: /?page=login");
@@ -132,7 +131,13 @@ switch ($page) {
         }
         $controller->myFriends();
         break;
-
+    case 'addfriends':
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /?page=login");
+            exit;
+        }
+        $controller->addFriends();
+        break;
     default:
         $controller->login();
         break;

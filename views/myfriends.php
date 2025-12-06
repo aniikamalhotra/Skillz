@@ -42,7 +42,7 @@ $friends = getFriendsByUser($user_id);
     <h2 class="fw-bold text-center mb-3 text-skillz">My Friends</h2>
 
     <?php if (empty($friends)): ?>
-      <p class="text-center">You don't have any friends yet.</p>
+      <p class="text-center">You don't have any friends at this time.</p>
     <?php else: ?>
       <div class="mt-3">
         <?php foreach ($friends as $f): ?>
@@ -56,6 +56,34 @@ $friends = getFriendsByUser($user_id);
       </div>
     <?php endif; ?>
   </div>
+
+  <div class="white-card" style="max-width:800px; width:100%;">
+    <h2 class="fw-bold text-center mb-3 text-skillz">Friend Requests</h2>
+    <?php if (empty($received_requests)): ?>
+      <p class="text-center">You do not have any pending friend requests at this time.</p>
+    <?php else: ?>
+      <div class="mt-3">
+        <?php foreach ($received_requests as $request): ?>
+          <div class="review-card d-flex flex-column">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <strong><?php echo htmlspecialchars(getUser($request['sender_id'])); ?></strong>
+              </div>
+            </div>
+            <div class="d-flex gap-2 mt-2">
+              <form method="post" action="/?page=deletereview" style="display:inline;">
+                <input type="hidden" id="user_id" name="user_id" value="<?php echo $user["sender_id"] ?>">
+                <button name="accept" class="btn btn-skillz" disabled>Accept</button>
+                <button name="reject" class="btn btn-skillz" disabled>Reject</button>
+              </form>
+            </div>
+          </div>
+        <?php endforeach; ?>
+      </div>
+    <?php endif; ?>
+  </div>
+
+
 </section>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
