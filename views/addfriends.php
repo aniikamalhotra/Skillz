@@ -96,9 +96,9 @@
     foreach ($all_users as $user) :
         $uid = $user['user_id'];
 
-        $isFriend = in_array($uid, array_column($friends, 'user_id'));
-        $isPendingSent = in_array($uid, array_column($sent_requests, 'user_id'));
-        $isPendingReceived = in_array($uid, array_column($received_requests, 'user_id'));
+        $isFriend = in_array($uid, array_column($friends, 'user_id')) ?? [];
+        $isPendingSent = in_array($uid, array_column($sent_requests, 'user_id')) ?? [];
+        $isPendingReceived = in_array($uid, array_column($received_requests, 'user_id')) ?? [];
   ?>
       <div class="col-sm-6">
         <div class="card">
