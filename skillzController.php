@@ -385,7 +385,7 @@ class skillzController {
         
         $user_id = $_SESSION['user_id'];
         $friends = getFriendsByUser($user_id);
-        $received_requests = getRequests($user_id);
+        $received_requests = getReceivedRequests($user_id);
         include 'views/myfriends.php';
     }
 
@@ -413,7 +413,7 @@ class skillzController {
         $all_users = getAllUsers();
         $friends = getFriendsByUser($user_id);
         $sent_requests = getSentRequests($user_id);
-        $received_requests = getRequests($user_id);
+        $received_requests = getReceivedRequests($user_id);
         include 'views/addfriends.php';
     }
 
