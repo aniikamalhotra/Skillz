@@ -157,6 +157,31 @@ class skillzController {
                     exit;
                 }
             }
+            } elseif (isset($_POST['like_off'])){
+                $article_id = $_POST['articleId'] ?? null;
+                // echo "<script>console.log('like_on clicked for article_id: " . $article_id . "');</script>";
+                 if ($article_id) {
+                    upVote($_SESSION['user_id'], $article_id);
+                    header("Location: /?page=musicarticleslist");
+                    exit;
+                }
+            } elseif (isset($_POST['dislike_off'])){
+                $article_id = $_POST['articleId'] ?? null;
+                // echo "<script>console.log('dislike_on clicked for article_id: " . $article_id . "');</script>";
+                if ($article_id) {
+                    downVote($_SESSION['user_id'], $article_id);
+                    header("Location: /?page=musicarticleslist");
+                    exit;
+                }
+            } elseif (isset($_POST['like_on']) or isset($_POST['dislike_on'])){
+                $article_id = $_POST['articleId'] ?? null;
+                // echo "<script>console.log('like_off or dislike_off clicked for article_id: " . $article_id . "');</script>";
+                if ($article_id) {
+                    cancelVote($_SESSION['user_id'], $article_id);
+                    header("Location: /?page=musicarticleslist");
+                    exit;
+                }
+            }
             else {
                 $search_query = $_POST['query'] ?? '';
             }
@@ -194,7 +219,31 @@ class skillzController {
                     exit;
                 }
             }
-            
+            } elseif (isset($_POST['like_off'])){
+                $article_id = $_POST['articleId'] ?? null;
+                // echo "<script>console.log('like_on clicked for article_id: " . $article_id . "');</script>";
+                 if ($article_id) {
+                    upVote($_SESSION['user_id'], $article_id);
+                    header("Location: /?page=artarticleslist");
+                    exit;
+                }
+            } elseif (isset($_POST['dislike_off'])){
+                $article_id = $_POST['articleId'] ?? null;
+                // echo "<script>console.log('dislike_on clicked for article_id: " . $article_id . "');</script>";
+                if ($article_id) {
+                    downVote($_SESSION['user_id'], $article_id);
+                    header("Location: /?page=artarticleslist");
+                    exit;
+                }
+            } elseif (isset($_POST['like_on']) or isset($_POST['dislike_on'])){
+                $article_id = $_POST['articleId'] ?? null;
+                // echo "<script>console.log('like_off or dislike_off clicked for article_id: " . $article_id . "');</script>";
+                if ($article_id) {
+                    cancelVote($_SESSION['user_id'], $article_id);
+                    header("Location: /?page=artarticleslist");
+                    exit;
+                }
+            }            
             else {
                 $search_query = $_POST['query'] ?? '';
             }
