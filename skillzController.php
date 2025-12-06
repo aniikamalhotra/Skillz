@@ -156,7 +156,6 @@ class skillzController {
                     $this->addFavorite($_SESSION['user_id'], $article_id, 'music');
                     exit;
                 }
-            }
             } elseif (isset($_POST['like_off'])){
                 $article_id = $_POST['articleId'] ?? null;
                 // echo "<script>console.log('like_on clicked for article_id: " . $article_id . "');</script>";
@@ -218,7 +217,6 @@ class skillzController {
                     $this->addFavorite($_SESSION['user_id'], $article_id, 'art');
                     exit;
                 }
-            }
             } elseif (isset($_POST['like_off'])){
                 $article_id = $_POST['articleId'] ?? null;
                 // echo "<script>console.log('like_on clicked for article_id: " . $article_id . "');</script>";
