@@ -35,6 +35,21 @@ class skillzController {
         include 'views/login.php';
     }
 
+    public function formatPhoneNumber($phone) {
+        $phone = preg_replace('/[^0-9]/', '', $phone);
+
+        if (strlen($phone) == 10) {
+            return substr($phone, 0, 3) . '-' . substr($phone, 3, 3) . '-' . substr($phone, 6, 4);
+        }
+        
+        if (strlen($phone) == 11 && $phone[0] == '1') {
+            $phone = substr($phone, 1);
+            return substr($phone, 0, 3) . '-' . substr($phone, 3, 3) . '-' . substr($phone, 6, 4);
+        }
+        
+        return $phone;
+    }
+
     public function signup() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $name = $_POST['name'];
@@ -43,7 +58,9 @@ class skillzController {
             $phone = $_POST['phone'];
             $bio = $_POST['bio'];
 
-            insertUser($name, $email, $phone, $bio, $password);
+            $phone_number = $this->formatPhoneNumber($phone);
+
+            insertUser($name, $email, $phone_number, $bio, $password);
 
             header("Location: /?page=login");
             exit;
@@ -309,8 +326,10 @@ class skillzController {
             $bio = $_POST['bio'] ?? '';
             $phone = $_POST['phone'] ?? '';
 
+            $phone_number = $this->formatPhoneNumber($phone);
+
             updateUsername($name, $_SESSION['user_id']);
-            updatePhone($phone, $_SESSION['user_id']);
+            updatePhone($phone_number, $_SESSION['user_id']);
             updateBio($bio, $_SESSION['user_id']);
 
             if (!empty($password)) {
