@@ -312,7 +312,10 @@ class skillzController {
             updateUsername($name, $_SESSION['user_id']);
             updatePhone($phone, $_SESSION['user_id']);
             updateBio($bio, $_SESSION['user_id']);
-            updatePassword($password, $_SESSION['user_id']);
+
+            if (!empty($password)) {
+                updatePassword($password, $_SESSION['user_id']);
+            }
         }
         include 'views/updateprofilepage.php';
     }
