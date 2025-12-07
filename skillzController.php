@@ -502,11 +502,16 @@ class skillzController {
         $output = fopen('php://output', 'w');
         
         if (!empty($articles)) {
-            fputcsv($output, array_keys($articles[0]));
-        }
+        $headers = ['title', 'author', 'date_article', 'link', 'type'];
+        fputcsv($output, $headers);
         
-        foreach ($articles as $article) {
-            fputcsv($output, $article);
+            foreach ($articles as $article) {
+                $row = [];
+                foreach ($headers as $header) {
+                    $row[] = $article[$header] ?? '';
+                }
+                fputcsv($output, $row);
+            }
         }
         
         fclose($output);
