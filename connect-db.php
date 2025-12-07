@@ -2,8 +2,8 @@
 // Remember to start the database server (or GCP SQL instance) before trying to connect to it
 ////////////////////////////////////////////
 /** F25, PHP (on Google Standard App Engine) connect to MySQL instance (GCP) **/
-$username = 'root';                       // or your username
-$password = 'skillzDBadmin2025!';     
+$username = 'app_user';                       // or your username
+$password = '4"PAoPfc\HBZ6cqf';     
 $host = 'skillz-476217:us-east4:skillzdb';       // e.g., 'cs4750:us-east4:db-demo'; 
 $dbname = 'Skillz';           // e.g., 'guestbook';
 $dsn = "mysql:unix_socket=/cloudsql/skillz-476217:us-east4:skillzdb;dbname=Skillz";
