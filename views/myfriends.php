@@ -64,17 +64,20 @@ $friends = getFriendsByUser($user_id);
     <?php else: ?>
       <div class="mt-3">
         <?php foreach ($received_requests as $request): ?>
+          <?php
+            $sender = getUser($request['sender_id'])[0];
+          ?>
           <div class="review-card d-flex flex-column">
             <div class="d-flex justify-content-between align-items-start">
               <div>
-                <strong><?php echo htmlspecialchars(getUser($request['sender_id'])); ?></strong>
+                <strong><?php echo htmlspecialchars($sender['user_name']); ?></strong>
               </div>
             </div>
             <div class="d-flex gap-2 mt-2">
-              <form method="post" action="/?page=deletereview" style="display:inline;">
-                <input type="hidden" id="user_id" name="user_id" value="<?php echo $user["sender_id"] ?>">
-                <button name="accept" class="btn btn-skillz" disabled>Accept</button>
-                <button name="reject" class="btn btn-skillz" disabled>Reject</button>
+              <form method="post" style="display:inline;">
+                <input type="hidden" id="user_id" name="user_id" value="<?php echo $request['sender_id'] ?>">
+                <button name="accept" class="btn btn-skillz">Accept</button>
+                <button name="reject" class="btn btn-skillz">Reject</button>
               </form>
             </div>
           </div>

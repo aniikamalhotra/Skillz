@@ -131,6 +131,12 @@ switch ($page) {
         }
         $controller->myFriends();
         break;
+    // case 'handleFriendRequest':
+    //     if (!isset($_SESSION['user_id'])) {
+    //         header("Location: /?page=login");
+    //         exit;
+    //     }
+    //     $controller -
     case 'addfriends':
         if (!isset($_SESSION['user_id'])) {
             header("Location: /?page=login");

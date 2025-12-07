@@ -571,23 +571,22 @@ function getSentRequests($senderId)
 {
     global $db;
     $stmt = $db->prepare("SELECT * FROM Request WHERE sender_id = :sender_id");
-    $stmt->bindParam(':sender_id', $senderId);
-    $stmt->execute();
+    $stmt->execute([':sender_id' => $senderId]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function getReceivedRequests($receiverId)
 {
     global $db;
     $stmt = $db->prepare("SELECT * FROM Request WHERE receiver_id = :receiver_id");
-    $stmt->bindParam(':receiver_id', $receiverId);
-    $stmt->execute();
+    $stmt->execute([':receiver_id' => $receiverId]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 function getReviewsByUser($user_id) {
     global $db;
     $stmt = $db->prepare("SELECT * FROM Review r JOIN Article a ON r.article_id = a.article_id WHERE r.user_id = :user_id");
-    $stmt->bindParam(':user_id', $user_id);
-    $stmt->execute();
+    $stmt->execute([':user_id' => $user_id]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
