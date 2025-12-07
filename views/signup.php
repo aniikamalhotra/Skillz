@@ -1,18 +1,6 @@
 <?php
 include_once('connect-db.php');
 include_once('request-db.php');
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'] ?? '';
-    $email = $_POST['email'] ?? '';
-    $password = $_POST['password'] ?? '';
-    $bio = $_POST['bio'] ?? '';
-    $phone = $_POST['phone'] ?? '';
-
-    insertUser($name, $email, $phone, $bio, $password); 
-    header("Location: index.php");
-    exit;
-}
 ?>
 
 <!DOCTYPE html>
@@ -66,6 +54,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="signup-card">
 
     <h2 class="fw-bold text-center mb-4 text-skillz">Create an Account</h2>
+
+    <?php if (isset($error) && $error): ?>
+      <div class="alert alert-danger">
+        <?php echo htmlspecialchars($error); ?>
+      </div>
+    <?php endif; ?>
 
     <form method="post">
       <div class="form-outline mb-3">

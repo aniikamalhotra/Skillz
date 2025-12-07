@@ -51,6 +51,7 @@ class skillzController {
     }
 
     public function signup() {
+        $error = '';
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $name = $_POST['name'];
             $email = $_POST['email'];
@@ -58,12 +59,19 @@ class skillzController {
             $phone = $_POST['phone'];
             $bio = $_POST['bio'];
 
-            $phone_number = $this->formatPhoneNumber($phone);
+            $phone_digits = preg_replace('/[^0-9]/', '', $phone);
 
-            insertUser($name, $email, $phone_number, $bio, $password);
+            if (strlen($phone_digits) < 10) {
+                $error = 'Please enter a valid phone number with at least 10 digits.';
+            } else {
+                $phone_number = $this->formatPhoneNumber($phone);
+                insertUser($name, $email, $phone_number, $bio, $password);
 
-            header("Location: /?page=login");
-            exit;
+                header("Location: /?page=login");
+                exit;
+            }
+
+            
         }
         include 'views/signup.php';
     }
@@ -319,13 +327,19 @@ class skillzController {
     }
 
     public function updateProfilePage() {
-        $search_query = "";
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $name = $_POST['name'] ?? '';
-            $password = $_POST['password'] ?? '';
-            $bio = $_POST['bio'] ?? '';
-            $phone = $_POST['phone'] ?? '';
+    $error = '';
+    
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $name = $_POST['name'] ?? '';
+        $password = $_POST['password'] ?? '';
+        $bio = $_POST['bio'] ?? '';
+        $phone = $_POST['phone'] ?? '';
 
+        $phone_digits = preg_replace('/[^0-9]/', '', $phone);
+
+        if (strlen($phone_digits) < 10) {
+            $error = 'Please enter a valid phone number with at least 10 digits.';
+        } else {
             $phone_number = $this->formatPhoneNumber($phone);
 
             updateUsername($name, $_SESSION['user_id']);
@@ -335,9 +349,12 @@ class skillzController {
             if (!empty($password)) {
                 updatePassword($password, $_SESSION['user_id']);
             }
+            
         }
-        include 'views/updateprofilepage.php';
     }
+    
+    include 'views/updateprofilepage.php';
+}
 
     public function addReview($article_id, $type) {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

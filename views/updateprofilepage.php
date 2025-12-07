@@ -56,6 +56,12 @@ include __DIR__ . '/navbar.php';
 
     <h2 class="fw-bold text-center mb-4 text-skillz">My Profile Page</h2>
 
+    <?php if (isset($error) && $error): ?>
+      <div class="alert alert-danger">
+        <?php echo htmlspecialchars($error); ?>
+      </div>
+    <?php endif; ?>
+
     <form method="post">
       <div class="form-outline mb-3">
         <label class="form-label" for="name">Name</label>
