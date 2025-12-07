@@ -1,4 +1,10 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<style>
+  .navbar-custom {
+    background-color: #fef8f4; 
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-custom">
   <div class="container-fluid">
     <a class="navbar-brand" href="/?page=topicselection">
         <img src="/static/logo.png" width="50" height="40"> 
