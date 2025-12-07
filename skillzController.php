@@ -126,6 +126,13 @@ class skillzController {
             }
         }
         $articles = getAllSportsArticles($search_query);
+
+        if (isset($_GET['sort']) && $_GET['sort'] === 'alphabetic') {
+            usort($articles, function($a, $b) {
+            return strcasecmp($a['title'], $b['title']);
+            });
+        }
+
         include 'views/sportarticleslist.php';
     }
 
@@ -253,6 +260,13 @@ class skillzController {
             }
         }
         $articles = getAllArtArticles($search_query);
+
+        if (isset($_GET['sort']) && $_GET['sort'] === 'alphabetic') {
+            usort($articles, function($a, $b) {
+            return strcasecmp($a['title'], $b['title']);
+            });
+        }
+        
         include 'views/artarticleslist.php';
     }
 
