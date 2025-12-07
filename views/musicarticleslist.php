@@ -1,4 +1,5 @@
 <?php include __DIR__ . '/navbar.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -119,7 +120,7 @@
         Sort By
         </button>
         <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="#">Alphabetic</a></li>
+        <li><a class="dropdown-item" href="?page=musicarticleslist&sort=alphabetic">Alphabetic</a></li>
         </ul>
       </div>
     </div>

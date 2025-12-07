@@ -186,6 +186,12 @@ class skillzController {
             }
         }
         $articles = getAllMusicArticles($search_query);
+
+        if (isset($_GET['sort']) && $_GET['sort'] === 'alphabetic') {
+            usort($articles, function($a, $b) {
+            return strcasecmp($a['title'], $b['title']);
+            });
+        }
         include 'views/musicarticleslist.php';
     }
 
