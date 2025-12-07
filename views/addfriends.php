@@ -94,6 +94,8 @@
 <div class="row g-3">
   <?php
     foreach ($all_users as $user) :
+        if ($user['user_id'] == $_SESSION['user_id']) continue;
+
         $uid = $user['user_id'];
 
         $isFriend = in_array($uid, array_column($friends, 'user_id')) ?? [];
