@@ -69,6 +69,28 @@
     .card{
       position: relative;
     }
+
+    .dropdown-toggle::after {
+    margin-left: 0.5rem;
+    }
+
+    .dropdown-menu {
+      border: 1px solid #ddd;
+      border-radius: 0.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .dropdown-item {
+      font-family: 'Poppins', sans-serif;
+      color: #333;
+      transition: 0.2s;
+    }
+
+    .dropdown-item:hover {
+      background-color: #3c52e3;
+      color: #fff;
+    }
+    
   </style>
 </head>
 
@@ -86,6 +108,17 @@
         <button class="btn btn-primary" type="submit">Search</button>
       </div>
     </form>
+
+    <div class="mb-4">
+      <div class="dropdown">
+        <button class="btn btn-skillz dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Sort By
+        </button>
+        <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="#">Alphabetic</a></li>
+        </ul>
+      </div>
+    </div>
 
 <div class="row g-3">
   <?php
