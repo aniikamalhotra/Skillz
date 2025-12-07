@@ -43,7 +43,14 @@ $articles = getFavoritedArticles($_SESSION['user_id']); // Make sure this functi
 
 <body>
   <div class="container mt-4">
-    <h1 class="mb-4">My Favorites</h1>
+    <div class="row mb-4 align-items-center">
+      <div class="col">
+        <h1 class="mb-4">My Favorites</h1>
+      </div>
+      <div class="col-auto">
+        <a href="?page=myfavorites&export=csv" class="btn btn-skillz">Export Data</a>
+      </div>
+    </div>
 
     <?php if (empty($articles)): ?>
       <p>You haven't favorited any articles yet.</p>

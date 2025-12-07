@@ -472,6 +472,13 @@ class skillzController {
         header("Location: /?page=login");
         exit;
         }
+
+        if (isset($_GET['export']) && $_GET['export'] === 'csv') {
+            $articles = getFavoritedArticles($_SESSION['user_id']);
+            $this->exportCSV($articles);
+            exit;
+        }
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['favorite'])) {
             $article_id = $_POST['articleId'] ?? null;
             $type = $_POST['articleType'] ?? null;
@@ -485,6 +492,25 @@ class skillzController {
         $articles = getFavoritedArticles($_SESSION['user_id']); 
         include 'views/viewfavorites.php';
     }
+
+    private function exportCSV($articles) {
+        $filename = "my_favorites_" . date('Y-m-d_His') . ".csv";
+        
+        header('Content-Type: text/csv');
+        header('Content-Disposition: attachment; filename="' . $filename . '"');
+        
+        $output = fopen('php://output', 'w');
+        
+        if (!empty($articles)) {
+            fputcsv($output, array_keys($articles[0]));
+        }
+        
+        foreach ($articles as $article) {
+            fputcsv($output, $article);
+        }
+        
+        fclose($output);
+    }   
 }
 
 
