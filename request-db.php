@@ -48,7 +48,7 @@ function insertArticle($user_id, $title, $link, $date_article, $author)
         ':author'     => $author
     ]);
 
-    return $pdo->lastInsertId()
+    return $db->lastInsertId()
 }
 
 function insertFavorite($user_id, $article_id, $type)
