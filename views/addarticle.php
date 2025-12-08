@@ -85,7 +85,7 @@ include __DIR__ . '/navbar.php';
       <?php endif; ?>
 
         <div class="white-card" style="width: 500px;">
-            <form method="post" action="/?page=addarticle">
+            <form method="post">
               <label>Article Title<br>
                 <input type="text" name="title" class="form-control form-control-lg" required>
               </label>
@@ -111,7 +111,7 @@ include __DIR__ . '/navbar.php';
               </label>
               <br><br>
 
-              <button type="submit" class="btn btn-skillz btn-lg" style="width: 150px;">Add Article</button>
+              <button type="submit" class="btn btn-skillz btn-lg" style="width: 150px;">Done</button>
             </form>
         </div>
     </div>

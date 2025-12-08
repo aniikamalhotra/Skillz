@@ -24,7 +24,8 @@ switch ($page) {
             header("Location: /?page=login");
             exit;
         }
-        $controller->addArticle();
+        $type = $_GET['type'];
+        $controller->addArticle($type);
         break;
     case 'topicselection':
         // only accessible if logged in
@@ -76,9 +77,8 @@ switch ($page) {
             header("Location: /?page=login");
             exit;
         }
-        $type = $_GET['type'];
         $article_id = $_GET['article_id'];
-        $controller->editReview($article_id, $type);
+        $controller->editReview($article_id);
         break;
     case 'viewreviews':
         if (!isset($_SESSION['user_id'])) {
