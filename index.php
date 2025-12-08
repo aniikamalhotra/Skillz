@@ -19,6 +19,9 @@ switch ($page) {
     case 'signup':
         $controller->signup();
         break;
+    case 'logout':
+        $controller->logout();
+        break;
     case 'addarticle':
         if (!isset($_SESSION['user_id'])) {
             header("Location: /?page=login");

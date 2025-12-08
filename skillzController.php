@@ -35,6 +35,18 @@ class skillzController {
         include 'views/login.php';
     }
 
+    public function logout() {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+
+        $_SESSION = [];
+        session_destroy();
+
+        header("Location: /?page=login");
+        exit;
+    }
+    
     public function formatPhoneNumber($phone) {
         $phone = preg_replace('/[^0-9]/', '', $phone);
 
@@ -440,6 +452,7 @@ class skillzController {
                 header("Location: /?page=editreview&type=none&article_id=" . urlencode($article_id));
                 exit;
             }
+        }
         include 'views/myreviews.php';
     }
 

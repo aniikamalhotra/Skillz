@@ -39,6 +39,9 @@
             <li><a class="dropdown-item" href="/?page=sportarticleslist">Sports</a></li>
           </ul>
         </li>
+        <li>
+          <a class="nav-link" href="/?page=logout">Logout</a>
+        </li>
       </ul>
     </div>
   </div>
