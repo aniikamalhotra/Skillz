@@ -66,15 +66,22 @@ include __DIR__ . '/navbar.php';
       padding: 2rem;
     }
 
+    .add-article-card {
+      background-color: #fff;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      max-width: 450px;
+      width: 100%;
+    }
   </style>
 </head>
 
 
 <body>
-
-  <div class="container d-flex justify-content-center align-items-center vh-100">
-    <div class="text-center">
-      <h1 class="fw-semibold mb-3 text-skillz">Add Article</h1>
+<section class="min-vh-100 d-flex justify-content-center align-items-start py-5">
+    <div class="add-article-card">
+    <h2 class="fw-bold text-center mb-4 text-skillz">Add Article</h2>
 
       <?php if (!empty($errors)): ?>
         <div class="errors">
@@ -113,10 +120,9 @@ include __DIR__ . '/navbar.php';
 
               <button type="submit" class="btn btn-skillz btn-lg" style="width: 150px;">Done</button>
             </form>
-        </div>
-    </div>
-  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

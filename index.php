@@ -77,8 +77,9 @@ switch ($page) {
             header("Location: /?page=login");
             exit;
         }
+        $type = $_GET['type'];
         $article_id = $_GET['article_id'];
-        $controller->editReview($article_id);
+        $controller->editReview($article_id, $type);
         break;
     case 'viewreviews':
         if (!isset($_SESSION['user_id'])) {

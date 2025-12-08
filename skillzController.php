@@ -397,7 +397,9 @@ class skillzController {
                     header("Location: /?page=musicarticleslist");
                 } elseif ($type == "art") {
                     header("Location: /?page=artarticleslist");
-                } else {}
+                } else {
+                    header("Location: /?page=myreviews");
+                }
                 exit;
             }
         }
@@ -428,6 +430,16 @@ class skillzController {
     }
 
     public function myReviews() {
+        if (!isset($_SESSION['user_id'])) {
+            header("Location: /?page=login");
+            exit;
+        }
+        if (isset($_POST['edit-review'])) {
+            $article_id = $_POST['articleId'] ?? null;
+            if ($article_id) {
+                header("Location: /?page=editreview&type=none&article_id=" . urlencode($article_id));
+                exit;
+            }
         include 'views/myreviews.php';
     }
 

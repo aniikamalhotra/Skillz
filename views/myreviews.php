@@ -40,9 +40,7 @@ $reviews = getReviewsByUser($user_id);
 
     <?php if (empty($reviews)): ?>
       <p class="text-center">You haven't posted any reviews yet.</p>
-      <div class="text-center mt-3">
-        <a href="/?page=addreview" class="btn-skillz">Write a Review</a>
-      </div>
+
     <?php else: ?>
       <div class="mt-3">
         <?php foreach ($reviews as $r): ?>
@@ -56,7 +54,11 @@ $reviews = getReviewsByUser($user_id);
             <p class="mt-2 mb-2"><?php echo nl2br(htmlspecialchars($r['review_text'] ?? '')); ?></p>
 
             <div class="d-flex gap-2 mt-2">
-              <a href="/?page=editreview&article_id=<?php echo urlencode($r['article_id']); ?>&id=<?php echo urlencode($r['id']); ?>" class="btn btn-skillz btn-lg px-5">Edit</a>
+              <form method="post">
+                <input type="hidden" name="article_id" value="<?php echo htmlspecialchars($r['article_id']); ?>">
+                <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($_SESSION['user_id']); ?>">
+                <button type="submit" name="edit-review" class="btn btn-skillz btn-lg px-5">Edit</button>
+              </form>
               <form method="post" action="/?page=deletereview" style="display:inline;">
                 <input type="hidden" name="article_id" value="<?php echo htmlspecialchars($r['article_id']); ?>">
                 <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($_SESSION['user_id']); ?>">
