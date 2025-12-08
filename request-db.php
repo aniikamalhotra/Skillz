@@ -47,6 +47,8 @@ function insertArticle($user_id, $title, $link, $date_article, $author)
         ':date_article' => $date_article,
         ':author'     => $author
     ]);
+
+    return $pdo->lastInsertId()
 }
 
 function insertFavorite($user_id, $article_id, $type)
@@ -189,11 +191,13 @@ function getUser($user_id)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function getAllUsers()
+function getAllUsers($search_query)
 {
     global $db;
-    $stmt = $db->prepare("SELECT * FROM Users");
-    $stmt->execute([]);
+    $stmt = $db->prepare("SELECT * FROM Users WHERE user_name LIKE :search OR bio LIKE :search");
+    $stmt->execute([
+        ':search' => '%' . $search_query . '%'
+    ]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 

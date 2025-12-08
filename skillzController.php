@@ -295,7 +295,7 @@ class skillzController {
         include 'views/artarticleslist.php';
     }
 
-    public function addArticle() {
+    public function addArticle($type) {
 
         if (!isset($_SESSION['user_id'])) {
             header("Location: /?page=login");
@@ -308,6 +308,7 @@ class skillzController {
             $author = trim($_POST['author'] ?? '');
             $date = $_POST['date_article'] ?? null;
             $link = trim($_POST['link'] ?? '');
+            $subtype = trim($_POST['type'] ?? '');
 
             if ($title === '') {
                 $errors[] = "Title is required.";
@@ -317,8 +318,17 @@ class skillzController {
             }
 
             if (empty($errors)) {
-                insertArticle($_SESSION['user_id'], $title, $link ?: null, $date ?: null, $author ?: null);
-                header("Location: /?page=addarticle&success=1");
+                $article_id = insertArticle($_SESSION['user_id'], $title, $link ?: null, $date ?: null, $author ?: null);
+                if ($type == "sports"): {
+                    insertSportArticle($article_id, $subtype);
+                    header("Location: /?page=sportarticleslist");
+                } elseif ($type == "music") {
+                    insertMusicArticle($article_id, $subtype);
+                    header("Location: /?page=musicarticleslist");
+                } elseif ($type == "art") {
+                    insertArtArticle($article_id, $subtype);
+                    header("Location: /?page=artarticleslist");
+                }
                 exit;
             }
         }
@@ -449,6 +459,7 @@ class skillzController {
     }
 
     public function addFriends() {
+        $search_query = "";
         if (!isset($_SESSION['user_id'])) {
             header("Location: /?page=login");
             exit;
@@ -466,10 +477,12 @@ class skillzController {
                 header("Location: /?page=addfriends");
                 exit;
             }
-        } else {}
+        } else {
+            $search_query = $_POST['query'] ?? '';
+        }
         
         $user_id = $_SESSION['user_id'];
-        $all_users = getAllUsers() ?? [];
+        $all_users = getAllUsers($search_query) ?? [];
         $friends = getFriendsByUser($user_id) ?? [];
         $sent_requests = getSentRequests($_SESSION['user_id']) ?? [];
         $received_requests = getReceivedRequests($user_id) ?? [];

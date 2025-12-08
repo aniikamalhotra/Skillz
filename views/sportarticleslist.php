@@ -114,7 +114,7 @@
       </div>
     </form>
   
-    <div class="mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
       <div class="dropdown">
         <button class="btn btn-skillz dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         Sort By
@@ -123,6 +123,8 @@
         <li><a class="dropdown-item" href="?page=sportarticleslist&sort=alphabetic">Alphabetic</a></li>
         </ul>
       </div>
+
+      <a href="/?page=addarticle&type=sports" class="btn btn-skillz">Add Article</a>
     </div>
 
 <div class="row g-3">
