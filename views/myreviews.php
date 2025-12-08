@@ -55,7 +55,7 @@ $reviews = getReviewsByUser($user_id);
 
             <div class="d-flex gap-2 mt-2">
               <form method="post">
-                <input type="hidden" name="article_id" value="<?php echo htmlspecialchars($r['article_id']); ?>">
+                <input type="hidden" id="articleId" name="articleId" value="<?php echo htmlspecialchars($r['article_id']); ?>">
                 <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($_SESSION['user_id']); ?>">
                 <button type="submit" name="edit-review" class="btn btn-skillz btn-lg px-5">Edit</button>
               </form>
