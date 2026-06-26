@@ -15,7 +15,7 @@ This is an education-based web application that will act as a "public database" 
 * Accounts
 * Friends
 
-https://skillz-476217.uk.r.appspot.com/
+App URL: https://skillz-476217.uk.r.appspot.com/ (will work on demand)
 
 
 
