@@ -1,0 +1,16 @@
+# Secrets — never commit these
+app.yaml
+.env
+
+# Composer
+/vendor/
+composer.lock
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log

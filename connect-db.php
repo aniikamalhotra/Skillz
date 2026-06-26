@@ -2,19 +2,19 @@
 // Remember to start the database server (or GCP SQL instance) before trying to connect to it
 ////////////////////////////////////////////
 /** F25, PHP (on Google Standard App Engine) connect to MySQL instance (GCP) **/
-$username = 'app_user';                       // or your username
-$password = '4"PAoPfc\HBZ6cqf';     
-$host = 'skillz-476217:us-east4:skillzdb';       // e.g., 'cs4750:us-east4:db-demo'; 
-$dbname = 'Skillz';           // e.g., 'guestbook';
-$dsn = "mysql:unix_socket=/cloudsql/skillz-476217:us-east4:skillzdb;dbname=Skillz";
+$username = $_ENV['DB_USER'];                       // or your username
+$password = $_ENV['DB_PASSWORD'];                   // or your password     
+$host = $_ENV['DB_HOST'];       // e.g., 'cs4750:us-east4:db-demo'; 
+$dbname = $_ENV['DB_NAME'];           // e.g., 'guestbook';
+$dsn = "mysql:unix_socket={$_ENV['DB_SOCKET']};dbname={$dbname}";
 
 // to get instance connection name, go to GCP SQL overview page
 ////////////////////////////////////////////
  
 
-// to get public IP addres of the SQL instance, go to GCP SQL overview page
+// to get public IP address of the SQL instance, go to GCP SQL overview page
 
-// To connect from a local PHP to GCP SQL instance, need to add authormized network
+// To connect from a local PHP to GCP SQL instance, need to add authorized network
 // to allow (my)machine to connect to the SQL instance. 
 // 1. Get IP of the computer that tries to connect to the SQL instance
 //    (use http://ipv4.whatismyv6.com/ to find the IP address)

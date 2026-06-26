@@ -1,0 +1,19 @@
+runtime: php85
+entrypoint: serve index.php
+
+env_variables:
+  DB_USER: "app_user"
+  DB_PASSWORD: "$^YqMO^yo6vY?Jr"
+  DB_NAME: "skillz"
+  DB_SOCKET: "/cloudsql/skillz-476217:us-east4:skillz"
+  DB_HOST: "skillz-476217:us-east4:skillz"
+
+beta_settings:
+  cloud_sql_instances: "skillz-476217:us-east4:skillz"
+
+handlers:
+  - url: /static
+    static_dir: static
+  
+  - url: /.*
+    script: auto

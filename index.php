@@ -152,5 +152,4 @@ switch ($page) {
         $controller->login();
         break;
 }
-
 ?>

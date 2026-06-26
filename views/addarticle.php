@@ -34,9 +34,7 @@ include __DIR__ . '/navbar.php';
       background-color: #2f45cf;
     }
 
-    .text-skillz {
-      color: #000000ff;
-    }
+    .text-skillz { color: #3c52e3; }
 
     .divider {
       display: flex;
@@ -59,29 +57,16 @@ include __DIR__ . '/navbar.php';
       margin-left: 0.5em;
     }
 
-    .white-card {
-      background-color: #fff;
-      border-radius: 1rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      padding: 2rem;
-    }
-
-    .add-article-card {
-      background-color: #fff;
-      border-radius: 1rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      padding: 2rem;
-      max-width: 450px;
-      width: 100%;
-    }
+    .white-card { background-color: #fff; border-radius: 1rem; box-shadow: 0 4px 20px rgba(0,0,0,0.1); padding: 1.5rem; }
+    .add-article-card { margin-bottom: 1rem; padding: 1rem; border-radius: .75rem; background: #fff; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
   </style>
 </head>
 
 
 <body>
 <section class="min-vh-100 d-flex justify-content-center align-items-start py-5">
-    <div class="add-article-card">
-    <h2 class="fw-bold text-center mb-4 text-skillz">Add Article</h2>
+    <div class="white-card" style="max-width:800px; width:100%;">
+    <h2 class="fw-bold text-center mb-3 text-skillz">Add Article</h2>
 
       <?php if (!empty($errors)): ?>
         <div class="errors">
@@ -91,10 +76,10 @@ include __DIR__ . '/navbar.php';
         </div>
       <?php endif; ?>
 
-        <div class="white-card" style="width: 500px;">
+      <div class="add-article-card d-flex flex-column">
             <form method="post">
               <label>Article Title<br>
-                <input type="text" name="title" class="form-control form-control-lg" required>
+                <input type="text" name="title" class="form-control form-control-lg w-100" required>
               </label>
               <br><br>
 
@@ -109,7 +94,7 @@ include __DIR__ . '/navbar.php';
               <br><br>
 
               <label>Article URL<br>
-                <input type="url" name="link" class="form-control form-control-lg">
+                <input type="url" name="link" class="form-control form-control-lg w-100">
               </label>
               <br><br>
 
@@ -117,11 +102,13 @@ include __DIR__ . '/navbar.php';
                 <input type="text" name="type" class="form-control form-control-lg">
               </label>
               <br><br>
-
-              <button type="submit" class="btn btn-skillz btn-lg" style="width: 150px;">Done</button>
+              <div class="d-flex justify-content-center">
+                <button type="submit" class="btn btn-skillz btn-lg" style="width: 150px;">Done</button>
+              </div>
             </form>
 
-  </div>
+        </div>
+    </div>
 </section>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

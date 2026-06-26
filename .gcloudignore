@@ -15,3 +15,9 @@
 
 # PHP Composer dependencies:
 /vendor/
+
+README.md
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

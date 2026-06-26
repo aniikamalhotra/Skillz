@@ -330,7 +330,7 @@ class skillzController {
             }
 
             if (empty($errors)) {
-                $article_id = insertArticle($_SESSION['user_id'], $title, $link ?: null, $date ?: null, $author ?: null);
+                $article_id = insertArticle($_SESSION['user_id'], $title, $link ?: null, $date ?: null, $author ?: null, $type ?: null);
                 if ($type == "sports") {
                     insertSportArticle($article_id, $subtype);
                     header("Location: /?page=sportarticleslist");
